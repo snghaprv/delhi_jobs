@@ -15,4 +15,4 @@ const insertRecruiter = async function () {
   }
 };
 
-insertRecruiter();
+//insertRecruiter();
