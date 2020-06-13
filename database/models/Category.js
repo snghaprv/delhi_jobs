@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey : true
         },
         label : DataTypes.STRING,
+        helptext:DataTypes.STRING
     },{
         timestamps:false
     });

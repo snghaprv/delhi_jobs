@@ -5,7 +5,7 @@ module.exports = {
 
       return queryInterface.bulkInsert('Categories',
       categories, {
-        updateOnDuplicate: ['label']
+        updateOnDuplicate: ['label','helptext']
       });
   },
 
