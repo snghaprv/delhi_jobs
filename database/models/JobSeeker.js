@@ -13,11 +13,12 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    date_of_birth: DataTypes.DATEONLY,
+    name: DataTypes.STRING,
     gender: DataTypes.ENUM("MALE", "FEMALE"),
-    current_salary: DataTypes.INTEGER,
+    worked_before: {
+      type: DataTypes.BOOLEAN,
+      allowNull:true
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: true,

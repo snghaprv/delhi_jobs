@@ -114,18 +114,25 @@
                     "field": "phone",
                     "seqType": "Sequelize.STRING"
                 },
-                "name": {
-                    "field": "name",
+                "first_name": {
+                    "field": "first_name",
                     "seqType": "Sequelize.STRING"
+                },
+                "last_name": {
+                    "field": "last_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "date_of_birth": {
+                    "field": "date_of_birth",
+                    "seqType": "Sequelize.DATEONLY"
                 },
                 "gender": {
                     "field": "gender",
                     "seqType": "Sequelize.ENUM('MALE', 'FEMALE')"
                 },
-                "worked_before": {
-                    "allowNull": true,
-                    "field": "worked_before",
-                    "seqType": "Sequelize.BOOLEAN"
+                "current_salary": {
+                    "field": "current_salary",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "email": {
                     "allowNull": true,
@@ -241,8 +248,12 @@
                     "field": "id",
                     "seqType": "Sequelize.INTEGER"
                 },
-                "name": {
-                    "field": "name",
+                "first_name": {
+                    "field": "first_name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "last_name": {
+                    "field": "last_name",
                     "seqType": "Sequelize.STRING"
                 },
                 "phone": {
@@ -317,5 +328,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }
