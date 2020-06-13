@@ -6,6 +6,8 @@ module.exports = (sequelize, DataTypes) => {
         label : DataTypes.STRING,
         latitude : DataTypes.FLOAT,
         longitude : DataTypes.FLOAT,
+    },{
+        timestamps:false
     });
     return Locality;
 };

@@ -4,6 +4,8 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey : true
         },
         label : DataTypes.STRING
+    },{
+        timestamps:false
     });
     return Qualification;
 };

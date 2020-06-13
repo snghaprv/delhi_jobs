@@ -4,6 +4,8 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey : true
         },
         label : DataTypes.STRING,
+    },{
+        timestamps:false
     });
     City.associate = function(models) {
         models.City.hasMany(models.Locality, { foreignKey :'city_id' , sourceKey: 'id' });

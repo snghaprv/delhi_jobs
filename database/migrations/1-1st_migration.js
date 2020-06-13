@@ -19,8 +19,8 @@ var Sequelize = require('sequelize');
 
 var info = {
     "revision": 1,
-    "name": "first migration",
-    "created": "2020-06-13T03:41:11.490Z",
+    "name": "1st migration",
+    "created": "2020-06-13T04:12:06.462Z",
     "comment": ""
 };
 
@@ -37,16 +37,6 @@ var migrationCommands = [{
                 "label": {
                     "type": Sequelize.STRING,
                     "field": "label"
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "field": "createdAt",
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "field": "updatedAt",
-                    "allowNull": false
                 }
             },
             {}
@@ -65,16 +55,6 @@ var migrationCommands = [{
                 "label": {
                     "type": Sequelize.STRING,
                     "field": "label"
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "field": "createdAt",
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "field": "updatedAt",
-                    "allowNull": false
                 }
             },
             {}
@@ -164,16 +144,6 @@ var migrationCommands = [{
                 "label": {
                     "type": Sequelize.STRING,
                     "field": "label"
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "field": "createdAt",
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "field": "updatedAt",
-                    "allowNull": false
                 }
             },
             {}
@@ -253,16 +223,6 @@ var migrationCommands = [{
                 "longitude": {
                     "type": Sequelize.FLOAT,
                     "field": "longitude"
-                },
-                "createdAt": {
-                    "type": Sequelize.DATE,
-                    "field": "createdAt",
-                    "allowNull": false
-                },
-                "updatedAt": {
-                    "type": Sequelize.DATE,
-                    "field": "updatedAt",
-                    "allowNull": false
                 },
                 "city_id": {
                     "type": Sequelize.STRING,
