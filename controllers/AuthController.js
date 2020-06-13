@@ -1,5 +1,6 @@
 const { JWTUtils } = require("../utils");
-const { OTPServices } = require("../services");
+const { OTPServices,JobSeekerServices } = require("../services");
+const {profile} = JobSeekerServices;
 const { getAndSendOTP,verifyOTP } = OTPServices;
 const { JobSeeker } = require("../database/models");
 const redisKeys = require('../utils/redisKeys')
@@ -55,8 +56,10 @@ try {
     const {id:jobseeker_id} = jobseeker;
     user_token = {jobseeker_id};
     const token =JWTUtils.issue(user_token, JOBSEEKER_JWT_TOKEN_EXPIRY_TIME,JWTUtils.TYPE.LOGIN);
-  
-    return res.sendSuccessResponse({token});
+    const jobseeker_profile = await profile.getProfile(jobseeker_id);
+    const {Catogeries} = jobseeker_profile;
+    const langing_page =  Catogeries.length>0 ? 'JOB_LISTING':'REGISTRATION';
+    return res.sendSuccessResponse({token,langing_page});
 }catch(error){
     console.error(error);
     if(error=='MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED'){

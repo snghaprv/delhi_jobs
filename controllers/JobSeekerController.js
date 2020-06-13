@@ -1,5 +1,5 @@
-const {JobSeeker} = require('../services');
-const {profile} = JobSeeker;
+const {JobSeekerServices} = require('../services');
+const {profile} = JobSeekerServices;
 
 const getProfile = async function (req, res) {
   try {

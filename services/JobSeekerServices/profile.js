@@ -60,8 +60,6 @@ const editProfile = async function (jobseeker_id, fields) {
   }
 };
 
-;
-
 
 module.exports = {
   getProfile,
