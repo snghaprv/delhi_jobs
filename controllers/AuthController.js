@@ -58,8 +58,8 @@ try {
     const token =JWTUtils.issue(user_token, JOBSEEKER_JWT_TOKEN_EXPIRY_TIME,JWTUtils.TYPE.LOGIN);
     const jobseeker_profile = await profile.getProfile(jobseeker_id);
     const {Categories} = jobseeker_profile;
-    const langing_page =  Categories.length>0 ? 'JOB_LISTING':'REGISTRATION';
-    return res.sendSuccessResponse({token,langing_page});
+    const landing_page =  Categories.length>0 ? 'JOB_LISTING':'REGISTRATION';
+    return res.sendSuccessResponse({token,landing_page});
 }catch(error){
     console.error(error);
     if(error=='MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED'){
