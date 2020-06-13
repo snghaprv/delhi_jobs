@@ -6,7 +6,7 @@
                 "id": {
                     "primaryKey": true,
                     "field": "id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "label": {
                     "field": "label",
@@ -25,7 +25,7 @@
                 "id": {
                     "primaryKey": true,
                     "field": "id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "label": {
                     "field": "label",
@@ -163,7 +163,7 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "field": "qualification_id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "locality_id": {
                     "allowNull": true,
@@ -174,7 +174,7 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "field": "locality_id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "city_id": {
                     "allowNull": true,
@@ -185,7 +185,7 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "field": "city_id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -196,7 +196,7 @@
                 "id": {
                     "primaryKey": true,
                     "field": "id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "label": {
                     "field": "label",
@@ -219,7 +219,7 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "field": "city_id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -230,7 +230,7 @@
                 "id": {
                     "primaryKey": true,
                     "field": "id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "label": {
                     "field": "label",
@@ -289,8 +289,8 @@
             },
             "indexes": []
         },
-        "JobSeeker_Category": {
-            "tableName": "JobSeeker_Category",
+        "JobSeeker_Categories": {
+            "tableName": "JobSeeker_Categories",
             "schema": {
                 "createdAt": {
                     "allowNull": false,
@@ -311,7 +311,7 @@
                     "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
                     "field": "category_id",
-                    "seqType": "Sequelize.STRING"
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "js_id": {
                     "primaryKey": true,
@@ -328,5 +328,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }

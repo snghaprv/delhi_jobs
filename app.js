@@ -44,8 +44,6 @@ app.use(function (err, req, res, next) {
 //   console.log(`Running on ${port}`);
 // });
 
-db.sequelize.sync({force: false}).then(() => {
-  app.listen(port, () => {
-    console.log(`Running on ${port}`);
-  });
+app.listen(port, () => {
+  console.log(`Running on ${port}`);
 });

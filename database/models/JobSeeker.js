@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     models.JobSeeker.belongsTo(models.Locality, { foreignKey :'locality_id' , sourceKey: 'id' });
     models.JobSeeker.belongsTo(models.City, { foreignKey :'city_id' , sourceKey: 'id' });
     models.JobSeeker.belongsToMany(models.Category, {
-        through: 'JobSeeker_Category',
+        through: 'JobSeeker_Categories',
         foreignKey: 'js_id',
         sourceKey: 'id'
     })

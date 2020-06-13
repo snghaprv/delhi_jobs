@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     var Category = sequelize.define('Category', {
-        id: {  type: DataTypes.STRING,
+        id: {  type: DataTypes.INTEGER,
             primaryKey : true
         },
         label : DataTypes.STRING,
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 
     Category.associate = function(models) {
          models.Category.belongsToMany(models.JobSeeker, {
-            through: 'JobSeeker_Category',
+            through: 'JobSeeker_Categories',
             foreignKey: 'category_id',
             sourceKey: 'id'
         })

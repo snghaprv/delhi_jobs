@@ -13,14 +13,14 @@ var Sequelize = require('sequelize');
  * createTable "Recruiters", deps: []
  * createTable "Localities", deps: [Cities]
  * createTable "JobSeekers", deps: [Qualifications, Localities, Cities]
- * createTable "JobSeeker_Category", deps: [Categories, JobSeekers]
+ * createTable "JobSeeker_Categories", deps: [Categories, JobSeekers]
  *
  **/
 
 var info = {
     "revision": 1,
-    "name": "1st migration",
-    "created": "2020-06-13T04:12:06.462Z",
+    "name": "first migration",
+    "created": "2020-06-13T10:17:21.192Z",
     "comment": ""
 };
 
@@ -30,13 +30,17 @@ var migrationCommands = [{
             "Categories",
             {
                 "id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "id",
                     "primaryKey": true
                 },
                 "label": {
                     "type": Sequelize.STRING,
                     "field": "label"
+                },
+                "helptext": {
+                    "type": Sequelize.STRING,
+                    "field": "helptext"
                 }
             },
             {}
@@ -48,7 +52,7 @@ var migrationCommands = [{
             "Cities",
             {
                 "id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "id",
                     "primaryKey": true
                 },
@@ -137,7 +141,7 @@ var migrationCommands = [{
             "Qualifications",
             {
                 "id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "id",
                     "primaryKey": true
                 },
@@ -208,7 +212,7 @@ var migrationCommands = [{
             "Localities",
             {
                 "id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "id",
                     "primaryKey": true
                 },
@@ -225,7 +229,7 @@ var migrationCommands = [{
                     "field": "longitude"
                 },
                 "city_id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "city_id",
                     "onUpdate": "CASCADE",
                     "onDelete": "SET NULL",
@@ -297,7 +301,7 @@ var migrationCommands = [{
                     "allowNull": false
                 },
                 "qualification_id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "qualification_id",
                     "onUpdate": "CASCADE",
                     "onDelete": "SET NULL",
@@ -308,7 +312,7 @@ var migrationCommands = [{
                     "allowNull": true
                 },
                 "locality_id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "locality_id",
                     "onUpdate": "CASCADE",
                     "onDelete": "SET NULL",
@@ -319,7 +323,7 @@ var migrationCommands = [{
                     "allowNull": true
                 },
                 "city_id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "city_id",
                     "onUpdate": "CASCADE",
                     "onDelete": "SET NULL",
@@ -336,7 +340,7 @@ var migrationCommands = [{
     {
         fn: "createTable",
         params: [
-            "JobSeeker_Category",
+            "JobSeeker_Categories",
             {
                 "createdAt": {
                     "type": Sequelize.DATE,
@@ -349,7 +353,7 @@ var migrationCommands = [{
                     "allowNull": false
                 },
                 "category_id": {
-                    "type": Sequelize.STRING,
+                    "type": Sequelize.INTEGER,
                     "field": "category_id",
                     "onUpdate": "CASCADE",
                     "onDelete": "CASCADE",

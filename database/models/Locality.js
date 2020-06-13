@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     var Locality = sequelize.define('Locality', {
-        id: {  type: DataTypes.STRING,
+        id: {  type: DataTypes.INTEGER,
             primaryKey : true
         },
         label : DataTypes.STRING,
