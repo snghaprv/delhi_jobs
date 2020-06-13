@@ -57,8 +57,8 @@ try {
     user_token = {jobseeker_id};
     const token =JWTUtils.issue(user_token, JOBSEEKER_JWT_TOKEN_EXPIRY_TIME,JWTUtils.TYPE.LOGIN);
     const jobseeker_profile = await profile.getProfile(jobseeker_id);
-    const {Catogeries} = jobseeker_profile;
-    const langing_page =  Catogeries.length>0 ? 'JOB_LISTING':'REGISTRATION';
+    const {Categories} = jobseeker_profile;
+    const langing_page =  Categories.length>0 ? 'JOB_LISTING':'REGISTRATION';
     return res.sendSuccessResponse({token,langing_page});
 }catch(error){
     console.error(error);
