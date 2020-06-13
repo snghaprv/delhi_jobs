@@ -15,7 +15,7 @@ const getProfile = async function (req, res) {
 const editProfile = async function (req, res) {
   
   try {
-    const {edit_fields} = req.body
+    const {body:edit_fields} = req;
     const jobseeker_id = req.token.id;
     await profile.editProfile(jobseeker_id,edit_fields);
     const jobseeker = await profile.getProfile(jobseeker_id);

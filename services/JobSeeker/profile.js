@@ -1,3 +1,4 @@
+const filter = require("filter-object");
 const {
   JobSeeker,
   Locality,
@@ -7,7 +8,16 @@ const {
 } = require("../../database/models");
 
 // name will be devided into first_name, last_name.
-const allowed_fields = ["name", "gender"];
+const allowed_fields = [
+  "name",
+  "gender",
+  "worked_before",
+  "email",
+  "qualification_id",
+  "locality_id",
+  "city_id",
+  "Categories",
+];
 
 const getProfile = async function (jobseeker_id) {
   const inclusions = [
@@ -40,13 +50,20 @@ const getProfile = async function (jobseeker_id) {
   return jobseeker.toJSON();
 };
 
+const editProfile = async function (jobseeker_id, fields) {
 
-const editProfile = async function(jobseeker_id, fields ){
+  let fields_to_update = filter(fields, allowed_fields)
+  await JobSeeker.update(fields_to_update,{where:{id:jobseeker_id}})
+  if(fields_to_update.Categories){
+    const job = await JobSeeker.findOne({where:{id:jobseeker_id}})
+    await job.setCategories(fields_to_update.Categories)
+  }
+};
 
+;
 
-}
 
 module.exports = {
   getProfile,
-  editProfile
+  editProfile,
 };

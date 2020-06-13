@@ -14,7 +14,7 @@ async function getAndSendOTP(keyObject, phone){
     let resend = false;
     let otp = await redis.get(key);
     let attempts_count = await redis.get(attempts_key);
-    if(attempts_count>=MAX_OTP_ATTEMPTS_ALLOWED){
+    if(attempts_count>=MAX_OTP_GENERATE_ATTEMPTS_ALLOWED){
         throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
     }
     let otp_entered_count = await redis.get(entered_key);
