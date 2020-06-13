@@ -1,5 +1,6 @@
 module.exports = {
     AuthController: require('./AuthController'),
     RecruiterController: require('./RecruiterController'),
-    JobSeekerController: require('./JobSeekerController')
+    JobSeekerController: require('./JobSeekerController'),
+    MetaDataController : require('./MetaDataController')
 }

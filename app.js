@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 const db = require("./database/models");
-const {AuthRoutes,JobSeekerRoutes} = require('./routes')
+const {AuthRoutes,JobSeekerRoutes,MetaDataRoutes} = require('./routes')
 const responseFormatter = require('./middleware/responseFormatter');
 // const accessLogStream = rfs('access.log', {
 //     interval: '1d', // rotate daily
@@ -26,6 +26,7 @@ app.use(responseFormatter);
 app.get("/", (req, res) => {
     res.json({message: `Delhi Government is here is Help You ..!!`});
   });
+app.use('/metadata',MetaDataRoutes);
 app.use("/login", AuthRoutes);
 app.use("/job-seeker",JobSeekerRoutes );
 //app.use("/recruiter",RecruiterRoutes );
