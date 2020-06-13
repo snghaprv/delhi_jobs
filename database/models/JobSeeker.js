@@ -28,5 +28,17 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
+  JobSeeker.associate = function(models) {
+    models.JobSeeker.belongsTo(models.Qualification, { foreignKey :'qualification_id' , sourceKey: 'id' });
+    models.JobSeeker.belongsTo(models.Locality, { foreignKey :'locality_id' , sourceKey: 'id' });
+    models.JobSeeker.belongsTo(models.City, { foreignKey :'city_id' , sourceKey: 'id' });
+    models.JobSeeker.belongsToMany(models.Category, {
+        through: 'JobSeeker_Category',
+        foreignKey: 'js_id',
+        sourceKey: 'id'
+    })
+}
   return JobSeeker;
 };
+
+

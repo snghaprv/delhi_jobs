@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
         en_title: DataTypes.STRING,
         hien_title: DataTypes.STRING
     });
+
+    Category.associate = function(models) {
+         models.Category.belongsToMany(models.JobSeeker, {
+            through: 'JobSeeker_Category',
+            foreignKey: 'category_id',
+            sourceKey: 'id'
+        })
+    }
     return Category;
 };
 
