@@ -22,6 +22,7 @@
     "nodemon": "^2.0.4",
     "rotating-file-stream": "^2.1.1",
     "sequelize": "^5.21.12",
+    "sequelize-auto-migrations": "git+https://github.com/snghaprv/sequelize-auto-migrations-fix.git",
     "sequelize-cli": "^5.5.1"
   },
   "devDependencies": {
