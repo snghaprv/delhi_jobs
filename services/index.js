@@ -1,3 +1,4 @@
 module.exports ={
-    OTPServices: require('./OTPServices')
+    OTPServices: require('./OTPServices'),
+    SMS : require('./SMS')
 }

@@ -1,21 +1,67 @@
+const {generator} =require('../utils')
+const SMS = require('./SMS')
+const Redis = require("ioredis");
+const redis = new Redis({
+    port: process.env.REDIS_PORT,
+    host: process.env.REDIS_HOST
+})
 
-const axios = require('axios');
+const MAX_OTP_GENERATE_ATTEMPTS_ALLOWED = 4 ;
+const MAX_OTP_ENTERING_ATTEMPTS_ALLOWED = 4;
 
-const sendMessage= async function(content, phone,message_type) {
-
-    const KALEYRA_KEYS = {
-        TRANSACTIONAL : process.env.KALEYRA_TRANSACTIONAL_API_KEY,
-        PROMOTIONAL : process.env.KALEYRA_PROMOTIONAL_API_KEY
+async function getAndSendOTP(keyObject, phone){
+    let {key, ttl, attempts_key, entered_key,user_type} = keyObject; 
+    let resend = false;
+    let otp = await redis.get(key);
+    let attempts_count = await redis.get(attempts_key);
+    if(attempts_count>=MAX_OTP_ATTEMPTS_ALLOWED){
+        throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
     }
-    //let url = `${process.env.SOLUTIONINFINI_BASE_URL}${process.env.SOLUTIONINFINI_API_KEY}&method=sms&message=${content}&to=91${phone}&sender=${process.env.SENDER_ID}`
-    let url = `https://api-global.kaleyra.com/v4/?method=sms&api_key=${KALEYRA_KEYS[message_type]}&to=91${phone}&message=${content}&format=1122334455667788991010___XXXXXXXXXX&sender=${process.env.SENDER_ID}`
-      let response =await axios.get(url);
-      if(response.data.status!='OK'){
-        console.error(response.data)
-        throw "OTP_SENDING_FAILURE"
-      }
-      return response;
-  }
-  
+    let otp_entered_count = await redis.get(entered_key);
+    if(otp_entered_count>=MAX_OTP_GENERATE_ATTEMPTS_ALLOWED){
+        throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
+    }
+    if(!otp){
+        otp = generator.GenerateOTP();
+        await redis.set(key, otp, "EX", ttl);
+        await redis.set(attempts_key,1,'EX',ttl);
+        await redis.set(entered_key, 1,'EX',ttl)
+    }else {
+        await redis.set(attempts_key,parseInt(attempts_count)+1, 'EX',ttl )
+        resend = true;
+    }
+    let content; 
+    if(user_type== 'RECRUITER'){
+        content = encodeURIComponent (`<#> ${otp} is your verification code for Delhi Job Board-Recruiter\n \n \n ${process.env.RECRUITER_APP_HASH}`)
+    } else if(user_type== 'JOBSEEKER'){
+        content = encodeURIComponent (`<#> ${otp} is your verification code for Delhi Job Board-JOBSEEKER.\n \n \n ${process.env.JOB_SEEKER_APP_HASH}`)
+    }
 
-  module.exports = {sendMessage}
+    await SMS.sendMessage(content, phone, 'TRANSACTIONAL');
+    return {otp,resend};
+   // return {delivery_id, otp, resend};
+}
+
+async function verifyOTP(keyObject, otp){
+    let {key, attempts_key, entered_key, ttl} = keyObject; 
+    let sent_otp = await redis.get(key);
+    let otp_entered_count = await redis.get(entered_key);
+    if(otp_entered_count>= MAX_OTP_ENTERING_ATTEMPTS_ALLOWED){
+        throw("MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED")
+    }
+    if(isNaN(otp_entered_count)){
+        otp_entered_count =0;
+    }
+    if (Number(sent_otp) != Number(otp)) {
+        await redis.set(entered_key,parseInt(otp_entered_count)+1, "EX",ttl  )
+        return false 
+    }else {
+        redis.del(key);
+        redis.del(entered_key)
+        redis.del(attempts_key)
+        return true
+    }
+}
+
+
+module.exports = { getAndSendOTP, verifyOTP}

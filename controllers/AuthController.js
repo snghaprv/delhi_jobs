@@ -1,12 +1,16 @@
 const { JWTUtils } = require("../utils");
 const { OTPServices } = require("../services");
-const { sendMessage } = OTPServices;
+const { getAndSendOTP,verifyOTP } = OTPServices;
 const { JobSeeker } = require("../database/models");
-
+const redisKeys = require('../utils/redisKeys')
+const {getJobSeekerKeys} =redisKeys;
 const {
   GENERIC_ERROR,
   PHONE_NOT_AVAILABLE,
   INCORRECT_OTP,
+  OTP_MAX_ATTEMPT_ERROR,
+  OTP_MAX_VERIFY_ERROR,
+  OTP_SENT_SUCCESSFUL
 } = require("../constants/messages");
 
 const JOBSEEKER_JWT_TOKEN_EXPIRY_TIME = 365*24*60*60;
@@ -19,11 +23,14 @@ const sendOTPToJobSeeker = async function (req, res) {
     if (!phone || !regex.test(phone)) {
       return res.sendErrorResponse(PHONE_NOT_AVAILABLE);
     }
-    const content = `Your OTP is 1123`;
-    // await sendMessage(content,phone,'TRANSACTIONAL');
-    return res.sendSuccessResponse()
+    const keyObject =getJobSeekerKeys(null).getLoginKeys(phone);
+    await getAndSendOTP(keyObject, phone);
+    return res.sendSuccessResponse({message:OTP_SENT_SUCCESSFUL })
   } catch (error) {
     console.error(error);
+    if(error=='MAX_OTP_ATTEMPTS_EXHAUSTED'){
+      return  res.sendErrorResponse(OTP_MAX_ATTEMPT_ERROR);
+    }
     return res.sendErrorResponse(GENERIC_ERROR);
   }
 };
@@ -32,7 +39,11 @@ const verifyOTPForJobSeeker = async function (req, res) {
 try {
     const { phone, otp } = req.body;
     //Logic for getting OTP from Redis.
-  
+    let keyObject = getJobSeekerKeys(null).getLoginKeys(phone);
+    let is_correct = await verifyOTP(keyObject, otp);
+    if (!is_correct) {
+      return res.sendErrorResponse(INCORRECT_OTP);
+  }
     const [jobseeker, created] = await JobSeeker.findOrCreate({
       where: {
         phone: phone,
@@ -48,6 +59,10 @@ try {
     return res.sendSuccessResponse({token});
 }catch(error){
     console.error(error);
+    if(error=='MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED'){
+      return  res.sendErrorResponse(OTP_MAX_VERIFY_ERROR);
+    }
+
     return res.sendErrorResponse(GENERIC_ERROR);
 }
 };

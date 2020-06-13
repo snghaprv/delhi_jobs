@@ -4,14 +4,18 @@ const get_OTP_TTL = function(){
 
 
 const getJobSeekerKeys = function(js_id){
-    const getLoginOTPKeys= function (phone) {
+    const getLoginKeys= function (phone) {
         return {
-            key: `JOB_SEEKER__LOGIN__OTP__${phone}`,
-            attempts_key : `JOB_SEEKER__LOGIN__ATTEMPTS__${phone}`,
-            entered_key : `JOB_SEEKER__LOGIN__ENTERED__${phone}`,
+            key: `JOBSEEKER__LOGIN__OTP__${phone}`,
+            attempts_key : `JOBSEEKER__LOGIN__ATTEMPTS__${phone}`,
+            entered_key : `JOBSEEKER__LOGIN__ENTERED__${phone}`,
             ttl: get_OTP_TTL(),
-            app : 'JOB_SEEKER'
+            user_type: 'JOBSEEKER'
         }
     }
-    return {getLoginOTPKeys}
+    return {getLoginKeys}
+}
+
+module.exports ={
+    getJobSeekerKeys
 }
