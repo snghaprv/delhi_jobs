@@ -1,3 +1,3 @@
 module.exports = {
-    errorHandler : require('./responseFormatter')
+    isJobSeekerAuthenticated : require('./isJobSeekerAuthenticated')
 }

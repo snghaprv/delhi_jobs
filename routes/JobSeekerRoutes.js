@@ -1,10 +1,13 @@
 const express = require("express");
-const JobSeeker = express.Router();
-const { UserController } = require("../controllers");
+const JobSeekerRouter = express.Router();
+const { JobSeekerController } = require("../controllers");
+const {isJobSeekerAuthenticated} = require('../middleware')
 const cb = (req, res) => {
   return;
 };
-JobSeeker.route("/edit-profile").post(cb);
-JobSeeker.route("/profile").get(cb);
+const {getProfile} = JobSeekerController
+JobSeekerRouter.use('/',isJobSeekerAuthenticated);
+JobSeekerRouter.route("/edit-profile").post(cb);
+JobSeekerRouter.route("/profile").get(getProfile);
 
-module.exports = JobSeeker;
+module.exports = JobSeekerRouter;

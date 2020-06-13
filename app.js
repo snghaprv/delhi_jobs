@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     res.json({message: `Delhi Government is here is Help You ..!!`});
   });
 app.use("/login", AuthRoutes);
-app.use("/jobseeker",JobSeekerRoutes );
+app.use("/job-seeker",JobSeekerRoutes );
 //app.use("/recruiter",RecruiterRoutes );
 
 app.get("*", (req, res) => {
@@ -43,7 +43,7 @@ app.use(function (err, req, res, next) {
 //   console.log(`Running on ${port}`);
 // });
 
-db.sequelize.sync({force: true}).then(() => {
+db.sequelize.sync({force: false}).then(() => {
   app.listen(port, () => {
     console.log(`Running on ${port}`);
   });

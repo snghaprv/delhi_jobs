@@ -12,8 +12,7 @@ const issue = function (payload, expiresIn, key) {
   );
 };
 
-const verify = function (token, type) {
-  const key = TYPE[type];
+const verify = function (token, key) {
   return jwt.verify(token, key);
 };
 
