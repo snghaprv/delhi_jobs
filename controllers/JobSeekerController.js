@@ -26,7 +26,19 @@ const editProfile = async function (req, res) {
   }
 };
 
+const deleteProfile = async function(req,res){
+ try{
+  const jobseeker_id = req.token.id;
+  await profile.deleteProfile(jobseeker_id)
+  return res.sendSuccessResponse();
+ } catch(error){
+  console.error(error);
+  return res.sendErrorResponse();
+ }
+}
+
 module.exports = {
   getProfile,
-  editProfile
+  editProfile,
+  deleteProfile
 };

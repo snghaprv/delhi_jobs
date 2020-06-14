@@ -67,8 +67,12 @@ const editProfile = async function (jobseeker_id, fields) {
   }
 };
 
+const deleteProfile = async function(jobseeker_id){
+  await JobSeeker.update({phone:null},{where:{id:jobseeker_id}})
+}
 
 module.exports = {
   getProfile,
   editProfile,
+  deleteProfile
 };
