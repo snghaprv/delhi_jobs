@@ -3,8 +3,7 @@ module.exports = (sequelize, DataTypes) => {
         id: {  type: DataTypes.INTEGER,
             primaryKey : true
         },
-        label : DataTypes.STRING,
-        helptext:DataTypes.STRING
+        label : DataTypes.STRING
     },{
         timestamps:false
     });

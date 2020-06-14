@@ -276,6 +276,11 @@
                     "field": "email",
                     "seqType": "Sequelize.STRING"
                 },
+                "other_city": {
+                    "allowNull": true,
+                    "field": "other_city",
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -318,6 +323,17 @@
                     "onUpdate": "CASCADE",
                     "field": "city_id",
                     "seqType": "Sequelize.INTEGER"
+                },
+                "language_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Languages",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "language_id",
+                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -356,6 +372,25 @@
                     "onUpdate": "CASCADE",
                     "field": "skill_id",
                     "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Languages": {
+            "tableName": "Languages",
+            "schema": {
+                "id": {
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "label": {
+                    "field": "label",
+                    "seqType": "Sequelize.STRING"
+                },
+                "helptext": {
+                    "field": "helptext",
+                    "seqType": "Sequelize.STRING"
                 }
             },
             "indexes": []
@@ -522,5 +557,5 @@
             "indexes": []
         }
     },
-    "revision": 3
+    "revision": 4
 }

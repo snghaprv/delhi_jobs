@@ -387,10 +387,6 @@
                 "label": {
                     "field": "label",
                     "seqType": "Sequelize.STRING"
-                },
-                "helptext": {
-                    "field": "helptext",
-                    "seqType": "Sequelize.STRING"
                 }
             },
             "indexes": []
@@ -557,5 +553,5 @@
             "indexes": []
         }
     },
-    "revision": 4
+    "revision": 5
 }
