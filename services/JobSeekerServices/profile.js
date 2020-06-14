@@ -5,6 +5,7 @@ const {
   City,
   Category,
   Qualification,
+  Language
 } = require("../../database/models");
 
 // name will be devided into first_name, last_name.
@@ -17,6 +18,8 @@ const allowed_fields = [
   "locality_id",
   "city_id",
   "Categories",
+  "language_id",
+  "other_city"
 ];
 
 const getProfile = async function (jobseeker_id) {
@@ -40,6 +43,10 @@ const getProfile = async function (jobseeker_id) {
       model: City,
       attributes: ["id", "label"],
     },
+    {
+      model: Language,
+      attributes: ["id", "label"],
+    }
   ];
   const jobseeker = await JobSeeker.findOne({
     where: {
