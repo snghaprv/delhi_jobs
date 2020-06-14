@@ -39,7 +39,7 @@ const sendOTPToJobSeeker = async function (req, res) {
 const verifyOTPForJobSeeker = async function (req, res) {
 try {
     const { phone, otp } = req.body;
-    //Logic for getting OTP from Redis.
+   
     let keyObject = getJobSeekerKeys(null).getLoginKeys(phone);
     let is_correct = await verifyOTP(keyObject, otp);
     if (!is_correct) {

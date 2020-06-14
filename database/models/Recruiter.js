@@ -29,8 +29,12 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   });
-
-  Recruiter.associate = function (models) {};
+  Recruiter.associate = function (models) {
+    models.Recruiter.belongsTo(models.Company, {
+      foreignKey: "company_id",
+      sourceKey: "id",
+    });
+  };
 
   return Recruiter;
 };
