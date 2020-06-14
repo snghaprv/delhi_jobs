@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     gender: DataTypes.ENUM("MALE", "FEMALE"),
     worked_before: {
       type: DataTypes.BOOLEAN,
-      allowNull:true
+      allowNull: true,
     },
     email: {
       type: DataTypes.STRING,
@@ -28,18 +28,33 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    other_city: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    }
   });
-  JobSeeker.associate = function(models) {
-    models.JobSeeker.belongsTo(models.Qualification, { foreignKey :'qualification_id' , sourceKey: 'id' });
-    models.JobSeeker.belongsTo(models.Locality, { foreignKey :'locality_id' , sourceKey: 'id' });
-    models.JobSeeker.belongsTo(models.City, { foreignKey :'city_id' , sourceKey: 'id' });
+  JobSeeker.associate = function (models) {
+    models.JobSeeker.belongsTo(models.Qualification, {
+      foreignKey: "qualification_id",
+      sourceKey: "id",
+    });
+    models.JobSeeker.belongsTo(models.Locality, {
+      foreignKey: "locality_id",
+      sourceKey: "id",
+    });
+    models.JobSeeker.belongsTo(models.City, {
+      foreignKey: "city_id",
+      sourceKey: "id",
+    });
+    models.JobSeeker.belongsTo(models.Language, {
+      foreignKey: "language_id",
+      sourceKey: "id",
+    });
     models.JobSeeker.belongsToMany(models.Category, {
-        through: 'JobSeeker_Categories',
-        foreignKey: 'js_id',
-        sourceKey: 'id'
-    })
-}
+      through: "JobSeeker_Categories",
+      foreignKey: "js_id",
+      sourceKey: "id",
+    });
+  };
   return JobSeeker;
 };
-
-
