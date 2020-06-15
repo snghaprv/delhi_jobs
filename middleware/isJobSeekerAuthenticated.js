@@ -1,4 +1,4 @@
-const { sequelize, JobSeeker } = require("../database/models");
+const { JobSeeker } = require("../database/models");
 const { NOT_AUTHORIZED } = require("../constants/messages");
 const JWTUtils = require("../utils/JWTUtils");
 const { verify, TYPE } = JWTUtils;

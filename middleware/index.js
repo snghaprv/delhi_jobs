@@ -1,3 +1,4 @@
 module.exports = {
-    isJobSeekerAuthenticated : require('./isJobSeekerAuthenticated')
+    isJobSeekerAuthenticated : require('./isJobSeekerAuthenticated'),
+    isRecruiterAuthenticated : require('./isRecruiterAuthenticated')
 }

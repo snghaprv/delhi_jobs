@@ -1,5 +1,6 @@
 module.exports = {
   AuthRoutes: require("./AuthRoutes"),
   JobSeekerRoutes: require("./JobSeekerRoutes"),
-  MetaDataRoutes: require('./MetaDataRoutes')
+  MetaDataRoutes: require('./MetaDataRoutes'),
+  RecruiterRoutes : require('./RecruiterRoutes')
 };
