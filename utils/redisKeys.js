@@ -16,6 +16,20 @@ const getJobSeekerKeys = function(js_id){
     return {getLoginKeys}
 }
 
+const getRecruiterKeys = function(recruite){
+    const getLoginKeys= function (phone) {
+        return {
+            key: `RECRUITER__LOGIN__OTP__${phone}`,
+            attempts_key : `RECRUITER__LOGIN__ATTEMPTS__${phone}`,
+            entered_key : `RECRUITER__LOGIN__ENTERED__${phone}`,
+            ttl: get_OTP_TTL(),
+            user_type: 'RECRUITER'
+        }
+    }
+    return {getLoginKeys}
+}
+
 module.exports ={
-    getJobSeekerKeys
+    getJobSeekerKeys,
+    getRecruiterKeys
 }
