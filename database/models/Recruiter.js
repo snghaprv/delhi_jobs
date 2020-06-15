@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         IndianPhoneNumber(value) {
-          const regex = /^[789]\d{9}$/;
+          const regex = /^[6789]\d{9}$/;
           if (value && !regex.test(value)) {
             throw new Error("INVALID_PHONE_NUMBER");
           }
