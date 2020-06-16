@@ -134,12 +134,23 @@
                 },
                 "gender": {
                     "field": "gender",
-                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE')"
+                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE', 'ANY')"
+                },
+                "minimum_experience": {
+                    "allowNull": true,
+                    "field": "minimum_experience",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "maximum_experience": {
+                    "allowNull": true,
+                    "field": "maximum_experience",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "minimum_salary": {
                     "allowNull": true,
                     "validate": {
-                        "min": 999
+                        "min": 999,
+                        "max": 99999
                     },
                     "field": "minimum_salary",
                     "seqType": "Sequelize.INTEGER"
@@ -147,10 +158,19 @@
                 "maximum_salary": {
                     "allowNull": true,
                     "validate": {
+                        "min": 999,
                         "max": 99999
                     },
                     "field": "maximum_salary",
                     "seqType": "Sequelize.INTEGER"
+                },
+                "incentives_applicable": {
+                    "field": "incentives_applicable",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "skills": {
+                    "field": "skills",
+                    "seqType": "Sequelize.STRING"
                 },
                 "shift_start_time": {
                     "allowNull": true,
@@ -168,7 +188,23 @@
                 },
                 "working_days": {
                     "field": "working_days",
-                    "seqType": "Sequelize.ENUM('5 days working', '6 days working', '7 days working', 'Others')"
+                    "seqType": "Sequelize.ENUM('5_DAYS_WORKING', '6_DAYS_WORKING', 'OTHERS')"
+                },
+                "job_type": {
+                    "field": "job_type",
+                    "seqType": "Sequelize.ENUM('FULL_TIME', 'PART_TIME', 'CONTRACT', 'WORK_FROM_HOME')"
+                },
+                "other_city": {
+                    "field": "other_city",
+                    "seqType": "Sequelize.STRING"
+                },
+                "status": {
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('ACTIVE', 'DEACTIVATED', 'BLOCKED', 'EXPIRED')"
+                },
+                "expiry_date": {
+                    "field": "expiry_date",
+                    "seqType": "Sequelize.DATEONLY"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -553,5 +589,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 7
 }

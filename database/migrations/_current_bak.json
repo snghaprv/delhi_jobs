@@ -134,7 +134,17 @@
                 },
                 "gender": {
                     "field": "gender",
-                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE')"
+                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE', 'ANY')"
+                },
+                "minimum_experience": {
+                    "allowNull": true,
+                    "field": "minimum_experience",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "maximum_experience": {
+                    "allowNull": true,
+                    "field": "maximum_experience",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "minimum_salary": {
                     "allowNull": true,
@@ -152,6 +162,14 @@
                     "field": "maximum_salary",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "incentives_applicable": {
+                    "field": "incentives_applicable",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "skills": {
+                    "field": "skills",
+                    "seqType": "Sequelize.STRING"
+                },
                 "shift_start_time": {
                     "allowNull": true,
                     "field": "shift_start_time",
@@ -168,7 +186,15 @@
                 },
                 "working_days": {
                     "field": "working_days",
-                    "seqType": "Sequelize.ENUM('5 days working', '6 days working', '7 days working', 'Others')"
+                    "seqType": "Sequelize.ENUM('5_DAYS_WORKING', '6_DAYS_WORKING', 'OTHERS')"
+                },
+                "job_type": {
+                    "field": "job_type",
+                    "seqType": "Sequelize.ENUM('FULL_TIME', 'PART_TIME', 'CONTRACT', 'WORK_FROM_HOME')"
+                },
+                "other_city": {
+                    "field": "other_city",
+                    "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -387,10 +413,6 @@
                 "label": {
                     "field": "label",
                     "seqType": "Sequelize.STRING"
-                },
-                "helptext": {
-                    "field": "helptext",
-                    "seqType": "Sequelize.STRING"
                 }
             },
             "indexes": []
@@ -557,5 +579,5 @@
             "indexes": []
         }
     },
-    "revision": 4
+    "revision": 6
 }

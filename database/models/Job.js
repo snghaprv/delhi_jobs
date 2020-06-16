@@ -14,20 +14,34 @@ module.exports = (sequelize, DataTypes) => {
         max: 9999,
       },
     },
-    gender: DataTypes.ENUM("MALE", "FEMALE"),
+    gender: DataTypes.ENUM("MALE", "FEMALE","ANY"),
+    minimum_experience: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    maximum_experience: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     minimum_salary: {
       type: DataTypes.INTEGER,
       allowNull: true,
       validate: {
         min: 999,
+        max: 99999,
       },
     },
     maximum_salary: {
       type: DataTypes.INTEGER,
       allowNull: true,
       validate: {
+        min: 999,
         max: 99999,
       },
+    },
+    incentives_applicable: DataTypes.BOOLEAN,
+    skills : {
+      type:DataTypes.STRING
     },
     shift_start_time: {
       type: DataTypes.TIME,
@@ -40,12 +54,31 @@ module.exports = (sequelize, DataTypes) => {
     job_address: DataTypes.STRING,
     working_days: {
       type: DataTypes.ENUM(
-        "5 days working",
-        "6 days working",
-        "7 days working",
-        "Others"
+        "5_DAYS_WORKING",
+        "6_DAYS_WORKING",
+        "OTHERS"
       ),
     },
+    job_type: {
+      type: DataTypes.ENUM(
+        "FULL_TIME",
+        "PART_TIME",
+        "CONTRACT",
+        "WORK_FROM_HOME"
+      ),
+    },
+    other_city : DataTypes.STRING,
+    status : {
+      type: DataTypes.ENUM(
+        "ACTIVE",
+        "DEACTIVATED",
+        "BLOCKED",
+        "EXPIRED"
+      ),
+    },
+    expiry_date: {
+      type: DataTypes.DATEONLY
+    }
   });
 
   Job.associate = function (models) {

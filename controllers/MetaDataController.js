@@ -1,19 +1,27 @@
-const cities = require('../dumps/Cities.json');
-const categories = require('../dumps/Categories.json');
-const qualifications = require('../dumps/Qualifications.json');
-const localities = require('../dumps/Localities.json');
-const languages = require('../dumps/Languages.json')
-const gender = [
-    {id:'MALE', label: 'Male'},
-    {id:'FEMALE', label:'Female'}
- ]
 
-const getJobSeekerRegistrationMetaData = async function(req,res){
+const { MetaDataServices } = require("../services");
 
-    const metadata = {cities,categories,qualifications,localities,gender,languages};
+
+const getJobSeekerRegistrationMetaData = async function (req, res) {
+  try {
+    const metadata = await MetaDataServices.getJobSeekerRegistrationMetaData()
     return res.sendSuccessResponse(metadata);
-}
+  } catch (error) {
+    console.error(error);
+    return res.sendErrorResponse();
+  }
+};
 
-module.exports ={
-    getJobSeekerRegistrationMetaData
-}
+const getJobPostFormMetaData = async function (req, res) {
+  try {
+    const job_post_form = await MetaDataServices.getJobPostForMetaData();
+    return res.sendSuccessResponse({job_post_form});
+  } catch (error) {
+    console.error(error);
+    return res.sendErrorResponse();
+  }
+};
+module.exports = {
+  getJobSeekerRegistrationMetaData,
+  getJobPostFormMetaData
+};

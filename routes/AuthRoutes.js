@@ -9,9 +9,6 @@ const {
   verifyOTPForRecruiter,
 } = AuthController;
 
-const cb = (req, res) => {
-  return;
-};
 
 AuthRouter.route("/job-seeker/send-otp").post(sendOTPToJobSeeker);
 AuthRouter.route("/job-seeker/verify-otp").post(verifyOTPForJobSeeker);

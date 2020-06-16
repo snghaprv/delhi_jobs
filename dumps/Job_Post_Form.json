@@ -1,0 +1,18 @@
+{
+  "gender": [
+    { "id": "ANY", "label": "Any" },
+    { "id": "MALE", "label": "Male" },
+    { "id": "FEMALE", "label": "Female" }
+  ],
+  "working_days": [
+    { "id": "5_DAYS_WORKING", "label": "5 days working" },
+    { "id": "6_DAYS_WORKING", "label": "6 days working" },
+    { "id": "OTHERS", "label": "Others" }
+  ],
+  "job_type": [
+    { "id": "FULL_TIME", "label": "Full time" },
+    { "id": "PART_TIME", "label": "Part time" },
+    { "id": "CONTRACT", "label": "Contract" },
+    { "id": "WORK_FROM_HOME", "label": "Work from home" }
+  ]
+}
