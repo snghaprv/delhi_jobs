@@ -85,22 +85,27 @@ module.exports = (sequelize, DataTypes) => {
     models.Job.belongsTo(models.Qualification, {
       foreignKey: "qualification_id",
       sourceKey: "id",
+      as :"qualification"
     });
     models.Job.belongsTo(models.Locality, {
       foreignKey: "locality_id",
       sourceKey: "id",
+      as : "locality"
     });
     models.Job.belongsTo(models.City, {
       foreignKey: "city_id",
       sourceKey: "id",
+      as : "city"
     });
     models.Job.belongsTo(models.Category, {
       foreignKey: "category_id",
       sourceKey: "id",
+      as :"category"
     });
     models.Job.belongsTo(models.Recruiter, {
       foreignKey: "recruiter_id",
       sourceKey: "id",
+      as : "recruiter"
     });
     models.Job.belongsToMany(models.Skill, {
       through: "Job_Skills",
