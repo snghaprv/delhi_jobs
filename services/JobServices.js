@@ -4,9 +4,9 @@ const formatJobData = function(job_data){
 }
 
 const createJob = async function (job_data,recruiter_id){
-
+    const JOB_EXPIRY_IN_DAYS = 30;
     const status ='ACTIVE';
-    const expiry_date = (new Date()).setDate((new Date()).getDate() + 30)
+    const expiry_date = (new Date()).setDate((new Date()).getDate() + JOB_EXPIRY_IN_DAYS)
     job_data = {...job_data,recruiter_id,status,expiry_date}
     let {skills} = job_data;
     if(skills){

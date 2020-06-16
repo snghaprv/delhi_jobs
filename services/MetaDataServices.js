@@ -10,7 +10,7 @@ const gender = [
 ];
 
 const getJobPostForMetaData = async function () {
-  return {...job_post_form,localities,cities,categories};
+  return {...job_post_form,localities,cities,categories,qualifications,};
 };
 
 const getJobSeekerRegistrationMetaData = async function () {
