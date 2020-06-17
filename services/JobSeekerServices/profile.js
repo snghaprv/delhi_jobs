@@ -7,6 +7,7 @@ const {
   Qualification,
   Language
 } = require("../../database/models");
+const { gender} = require("../../dumps/Job_Post_Form.json");
 
 // name will be devided into first_name, last_name.
 const allowed_fields = [
@@ -30,31 +31,42 @@ const getProfile = async function (jobseeker_id) {
       through: {
         attributes: [],
       },
+      as:"categories"
     },
     {
       model: Locality,
       attributes: ["id", "label"],
+      as: "locality"
     },
     {
       model: Qualification,
       attributes: ["id", "label"],
+      as : "qualification"
     },
     {
       model: City,
       attributes: ["id", "label"],
+      as : "city"
     },
     {
       model: Language,
       attributes: ["id", "label"],
+      as :"language"
     }
   ];
-  const jobseeker = await JobSeeker.findOne({
+  let jobseeker = await JobSeeker.findOne({
     where: {
       id: jobseeker_id,
     },
     include: inclusions,
+    attributes:{
+      exclude : ["qualification_id","locality_id","city_id","category_id", "createdAt", "updatedAt"]
+    }
   });
-  return jobseeker.toJSON();
+  
+  jobseeker = jobseeker.toJSON();
+  jobseeker.gender = gender.find(g => g.id ==jobseeker.gender )
+  return jobseeker;
 };
 
 const editProfile = async function (jobseeker_id, fields) {
