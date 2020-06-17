@@ -2,7 +2,7 @@ const express = require("express");
 const JobSeekerRouter = express.Router();
 const { JobSeekerController } = require("../controllers");
 const {isJobSeekerAuthenticated} = require('../middleware')
-const {getProfile,editProfile,deleteProfile,getOneJob,getAllJobs} = JobSeekerController;
+const {getProfile,editProfile,deleteProfile,getOneJob,getAllJobs,getAppliedJobs} = JobSeekerController;
 
 
 JobSeekerRouter.use('/',isJobSeekerAuthenticated);
@@ -11,6 +11,6 @@ JobSeekerRouter.route("/profile").get(getProfile);
 JobSeekerRouter.route("/profile").delete(deleteProfile);
 JobSeekerRouter.route("/jobs/:job_id").get(getOneJob);
 JobSeekerRouter.route("/jobs").get(getAllJobs);
-JobSeekerRouter.route("/applications").get(()=>{});
+JobSeekerRouter.route("/applications").get(getAppliedJobs);
 
 module.exports = JobSeekerRouter;

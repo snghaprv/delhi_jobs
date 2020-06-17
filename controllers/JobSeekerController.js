@@ -1,6 +1,8 @@
-const {JobSeekerServices,JobServices,RecommendationServices} = require('../services');
+const {JobSeekerServices,JobServices,RecommendationServices,ApplicationServices} = require('../services');
 const {profile} = JobSeekerServices;
 const {BaseRecommender} = RecommendationServices;
+const {JobSeekerApplicationServices} = ApplicationServices;
+
 
 const getProfile = async function (req, res) {
   try {
@@ -61,10 +63,29 @@ const getOneJob = async function (req,res){
 
 }
 
+const getAppliedJobs = async function(req,res){
+  const {getAppliedJobs} = JobSeekerApplicationServices;
+  try{
+    const jobseeker_id = req.token.id;
+    let applications = await getAppliedJobs(jobseeker_id);
+    const job_ids = applications.map(({job_id})=>job_id)
+    const jobs_data = await JobServices.getJobsDataForJobSeeker(job_ids);
+    applications = applications.map(application => {
+      const job_data = jobs_data.find(job=> job.id ==application.job_id);
+      return {...application,...job_data}
+    })
+    return res.sendSuccessResponse({applications});
+  } catch(error){
+    console.error(error);
+    return res.sendErrorResponse();
+  }
+}
+
 module.exports = {
   getProfile,
   editProfile,
   deleteProfile,
   getAllJobs,
-  getOneJob
+  getOneJob,
+  getAppliedJobs 
 };

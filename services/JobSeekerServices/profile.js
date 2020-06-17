@@ -60,7 +60,7 @@ const getProfile = async function (jobseeker_id) {
     },
     include: inclusions,
     attributes:{
-      exclude : ["qualification_id","locality_id","city_id","category_id", "createdAt", "updatedAt"]
+      exclude : ["qualification_id","locality_id","city_id","category_id","language_id", "createdAt", "updatedAt"]
     }
   });
   

@@ -4,5 +4,6 @@ module.exports ={
     JobSeekerServices : require('./JobSeekerServices'),
     MetaDataServices : require('./MetaDataServices'),
     JobServices : require('./JobServices'),
-    RecommendationServices : require('./RecommendationServices')
+    RecommendationServices : require('./RecommendationServices'),
+    ApplicationServices : require('./ApplicationServices')
 }

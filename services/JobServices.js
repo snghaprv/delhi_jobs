@@ -6,9 +6,9 @@ const {
   Category,
   Qualification,
   Recruiter,
-  Company,
+  Company
 } = require("../database/models");
-
+const {sequelize} = require("../database")
 const Job_Post_Form = require("../dumps/Job_Post_Form.json");
 const { gender, working_days, job_type } = Job_Post_Form;
 
@@ -113,6 +113,7 @@ const getJobsDataForJobSeeker = async function (job_ids) {
     where: { id: job_ids },
     include: inclusions,
     attributes: ["title", "minimum_salary", "maximum_salary", "createdAt","id"],
+    order : [[sequelize.fn('FIELD', sequelize.col('Job.id'),job_ids )]]
   });
   jobs = jobs.map((job) => job.toJSON());
   jobs = jobs.map((job) => {
