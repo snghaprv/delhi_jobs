@@ -64,6 +64,7 @@ const editProfile = async function (jobseeker_id, fields) {
   if(fields_to_update.Categories){
     const job = await JobSeeker.findOne({where:{id:jobseeker_id}})
     await job.setCategories(fields_to_update.Categories)
+    
   }
 };
 
