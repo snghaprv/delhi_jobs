@@ -9,7 +9,6 @@ const {
 } = require("../../database/models");
 const { gender} = require("../../dumps/Job_Post_Form.json");
 
-// name will be devided into first_name, last_name.
 const allowed_fields = [
   "name",
   "gender",

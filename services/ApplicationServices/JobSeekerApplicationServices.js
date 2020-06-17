@@ -1,5 +1,4 @@
-const { Job_Application } = require("../../database/models");
-const { sequelize, Sequelize } = require("../../database");
+const { Job_Application,sequelize } = require("../../database/models");
 const APPLICATION_STATUS = {
   JS_VIEWED: "JS_VIEWED",
   JS_CALLED: "JS_CALLED",

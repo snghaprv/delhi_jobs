@@ -90,39 +90,56 @@ class BaseRecomemnder {
   }
 
   getBaseQuerySting() {
+    const today = moment().format("YYYY-MM-DD");
     let baseQueryProjection = `j.id`;
-    let baseQuerySource = `FROM Jobs j
-                              LEFT JOIN Localities l ON l.id = j.locality_id
-                              LEFT JOIN Categories c ON j.category_id = c.id
-                              `;
+    let baseQuerySource = `
+    FROM 
+      Jobs j
+        LEFT JOIN
+      Localities l ON l.id = j.locality_id
+        LEFT JOIN
+      Categories c ON j.category_id = c.id
+      `;
 
     let baseQueryFilter = ` j.id NOT IN (:actioned_jobs)
-                                AND ${this.getGenderQuery().filter}
-                                AND ${this.getEducationQuery().filter}
+        AND ${this.getGenderQuery().filter}
+        AND ${this.getEducationQuery().filter}
+        AND expiry_date >= '${today}'
+        AND status ='ACTIVE'
                                 `;
 
     return { baseQueryProjection, baseQuerySource, baseQueryFilter };
   }
 
   getDistanceScore(multiplier = 1) {
-    let distanceString = ` WHEN (6371 * 2 * ASIN(SQRT(POWER(SIN((${this.geolocation.latitude} - abs(l.latitude)) * pi()/180 / 2),2) + COS(${this.geolocation.latitude} * pi()/180 ) * COS(abs(l.latitude) * pi()/180) * POWER(SIN((${this.geo_location.longitude} - l.longitude) * pi()/180 / 2), 2) )))`;
+    let distanceString = ` WHEN 
+                              (6371 * 2 * ASIN(SQRT(POWER(SIN((${this.geolocation.latitude} - abs(l.latitude)) * pi()/180 / 2),
+                                                        2) + COS(${this.geolocation.latitude} * pi()/180 ) * COS(abs(l.latitude) * pi()/180) * POWER(SIN((${this.geolocation.longitude} - l.longitude) * pi()/180 / 2), 2) ))
+                                                        )`;
 
-    let rankString = `CASE
-                          ${distanceString} <  5 THEN ${1.0 * multiplier}
-                          ${distanceString} < 10 THEN ${0.8 * multiplier}
-                          ${distanceString} < 20 THEN ${0.6 * multiplier} 
-                          ${distanceString} < 40 THEN ${0.4 * multiplier}
+    let rankString = `
+                      CASE
+                          ${distanceString} <  5 
+                          THEN ${1.0 * multiplier}
+                          ${distanceString} < 10 
+                          THEN ${0.8 * multiplier}
+                          ${distanceString} < 20 
+                          THEN ${0.6 * multiplier} 
+                          ${distanceString} < 40 
+                          THEN ${0.4 * multiplier}
                       ELSE 0 
-                      END`;
+                    END`;
     return { rankString };
   }
 
   getCategoryScore(multiplier = 1) {
     let rankString =
       this.categories.length > 0
-        ? ` CASE WHEN j.category_id IN (${this.categories}) THEN ${
-            1 * multiplier
-          } ELSE 0 END `
+        ? ` 
+        CASE 
+          WHEN j.category_id IN (${this.categories}) THEN ${1 * multiplier}
+          ELSE 0
+        END`
         : ` 0 `;
 
     return { rankString };
@@ -146,7 +163,9 @@ class BaseRecomemnder {
 //   } = b.getBaseQuerySting();
 
 //   console.log(
-//     `  SELECT ${baseQueryProjection},${b.getDistanceScore().rankString}, ${b.getCategoryScore().rankString} ${baseQuerySource} WHERE ${baseQueryFilter}`
+//     `  SELECT ${baseQueryProjection},${b.getDistanceScore().rankString}, ${
+//       b.getCategoryScore().rankString
+//     } ${baseQuerySource} WHERE ${baseQueryFilter}`
 //   );
 //   console.log(b);
 // }

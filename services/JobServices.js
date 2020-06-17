@@ -6,9 +6,9 @@ const {
   Category,
   Qualification,
   Recruiter,
-  Company
+  Company,
+  sequelize
 } = require("../database/models");
-const {sequelize} = require("../database")
 const Job_Post_Form = require("../dumps/Job_Post_Form.json");
 const { gender, working_days, job_type } = Job_Post_Form;
 
