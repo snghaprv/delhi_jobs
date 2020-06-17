@@ -61,8 +61,8 @@ const verifyOTPForJobSeeker = async function (req, res) {
       JWTUtils.TYPE.LOGIN
     );
     const jobseeker_profile = await profile.getProfile(jobseeker_id);
-    const { Categories } = jobseeker_profile;
-    const landing_page = Categories.length > 0 ? "JOB_LISTING" : "REGISTRATION";
+    const { categories } = jobseeker_profile;
+    const landing_page = categories.length > 0 ? "JOB_LISTING" : "REGISTRATION";
     return res.sendSuccessResponse({ token, landing_page });
   } catch (error) {
     console.error(error);
