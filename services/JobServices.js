@@ -1,9 +1,12 @@
+const moment = require("moment");
 const {
   Job,
   Locality,
   City,
   Category,
   Qualification,
+  Recruiter,
+  Company,
 } = require("../database/models");
 
 const Job_Post_Form = require("../dumps/Job_Post_Form.json");
@@ -26,7 +29,7 @@ const createJob = async function (job_data, recruiter_id) {
   return job.id;
 };
 
-const getJobsDataForJobSeeker = async function (job_ids) {
+const getOneJobDataForJobSeeker = async function (job_id) {
   const inclusions = [
     {
       model: Category,
@@ -48,6 +51,16 @@ const getJobsDataForJobSeeker = async function (job_ids) {
       attributes: ["label"],
       as: "city",
     },
+    {
+      model: Recruiter,
+      attributes: ["phone"],
+      as: "recruiter",
+      include: {
+        model: Company,
+        attributes: ["name", "address"],
+        as: "company",
+      },
+    },
   ];
   const exclusions = [
     "expiry_date",
@@ -57,22 +70,16 @@ const getJobsDataForJobSeeker = async function (job_ids) {
     "locality_id",
     "category_id",
     "recruiter_id",
-    "createdAt",
     "updatedAt",
-  ]
-  let jobs = await Job.findAll({
-    where: { id: job_ids },
+  ];
+  let job = await Job.findOne({
+    where: { id: job_id },
     include: inclusions,
     attributes: {
-      exclude:exclusions,
+      exclude: exclusions,
     },
   });
-  jobs = jobs.map((job) => job.toJSON());
-  jobs = jobs.map(formatJobDataForJobSeeker);
-  return jobs;
-};
-
-const formatJobDataForJobSeeker = function (job) {
+  job = job.toJSON();
   job.gender = gender.find((g) => g.id == job.gender).label;
   job.working_days = working_days.find((wd) => wd.id == job.working_days).label;
   job.job_type = job_type.find((jt) => jt.id == job.job_type).label;
@@ -81,13 +88,41 @@ const formatJobDataForJobSeeker = function (job) {
   job.locality = !!job.locality ? job.locality.label : null;
   job.qualification = !!job.qualification ? job.qualification.label : null;
   job.city = !!job.city ? job.city.label : null;
+  job.posted_on_label = `Posted ${moment(job.createdAt).format(
+    "DD"
+  )}th ${moment(job.createdAt).format("MMM")} `;
+  delete job.createdAt;
   return job;
 };
 
-const getOneJobDataForJobSeeker = async function (job_id) {
-  let jobs = await getJobsDataForJobSeeker([job_id]);
-  const [job] = jobs;
-  return job;
+const getJobsDataForJobSeeker = async function (job_ids) {
+  const inclusions = [
+    {
+      model: Recruiter,
+      attributes: ["id"],
+      as: "recruiter",
+      include: {
+        model: Company,
+        attributes: ["name", "address"],
+        as: "company",
+      },
+    },
+  ];
+
+  let jobs = await Job.findAll({
+    where: { id: job_ids },
+    include: inclusions,
+    attributes: ["title", "minimum_salary", "maximum_salary", "createdAt","id"],
+  });
+  jobs = jobs.map((job) => job.toJSON());
+  jobs = jobs.map((job) => {
+    job.posted_on_label = `Posted ${moment(job.createdAt).format(
+      "DD"
+    )}th ${moment(job.createdAt).format("MMM")} `;
+    delete job.createdAt;
+    return job;
+  });
+  return jobs;
 };
 
 module.exports = {

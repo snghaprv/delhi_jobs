@@ -1,11 +1,11 @@
-const {JobSeekerServices,JobServices} = require('../services');
-const {profile} = JobSeekerServices;
-//getJobData
+const {JobSeekerServices,JobServices,RecommendationServices} = require('../services');
+const {Profile} = JobSeekerServices;
+const {BaseRecommender} = RecommendationServices;
 
 const getProfile = async function (req, res) {
   try {
     const jobseeker_id = req.token.id;
-    const jobseeker = await profile.getProfile(jobseeker_id);
+    const jobseeker = await Profile.getProfile(jobseeker_id);
     return res.sendSuccessResponse(jobseeker);
   } catch (error) {
     console.error(error);
@@ -19,7 +19,7 @@ const editProfile = async function (req, res) {
     const {body:edit_fields} = req;
     const jobseeker_id = req.token.id;
     await profile.editProfile(jobseeker_id,edit_fields);
-    const jobseeker = await profile.getProfile(jobseeker_id);
+    const jobseeker = await Profile.getProfile(jobseeker_id);
     return res.sendSuccessResponse(jobseeker);
   } catch (error) {
     console.error(error);
@@ -39,8 +39,11 @@ const deleteProfile = async function(req,res){
 }
 const getAllJobs = async function (req,res){
   try {
-    const job_data = await JobServices.getOneJobDataForJobSeeker(job_id);
-    return res.sendSuccessResponse({job:job_data});
+    const jobseeker_id = req.token.id;
+    const recommender = new BaseRecommender(jobseeker_id);
+    const job_ids = await recommender.getRecommendedJobs()
+    const job_data = await JobServices.getJobsDataForJobSeeker(job_ids);
+    return res.sendSuccessResponse({jobs:job_data});
   } catch(error){
     console.error(error);
     return res.sendErrorResponse();

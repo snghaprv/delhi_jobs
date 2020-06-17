@@ -149,7 +149,8 @@
                 "minimum_salary": {
                     "allowNull": true,
                     "validate": {
-                        "min": 999
+                        "min": 999,
+                        "max": 99999
                     },
                     "field": "minimum_salary",
                     "seqType": "Sequelize.INTEGER"
@@ -157,6 +158,7 @@
                 "maximum_salary": {
                     "allowNull": true,
                     "validate": {
+                        "min": 999,
                         "max": 99999
                     },
                     "field": "maximum_salary",
@@ -195,6 +197,14 @@
                 "other_city": {
                     "field": "other_city",
                     "seqType": "Sequelize.STRING"
+                },
+                "status": {
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('ACTIVE', 'DEACTIVATED', 'BLOCKED', 'EXPIRED')"
+                },
+                "expiry_date": {
+                    "field": "expiry_date",
+                    "seqType": "Sequelize.DATEONLY"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -579,5 +589,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 7
 }

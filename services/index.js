@@ -3,5 +3,6 @@ module.exports ={
     SMS : require('./SMS'),
     JobSeekerServices : require('./JobSeekerServices'),
     MetaDataServices : require('./MetaDataServices'),
-    JobServices : require('./JobServices')
+    JobServices : require('./JobServices'),
+    RecommendationServices : require('./RecommendationServices')
 }

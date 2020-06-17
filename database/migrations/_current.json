@@ -94,6 +94,10 @@
                     "field": "phone",
                     "seqType": "Sequelize.STRING"
                 },
+                "address": {
+                    "field": "address",
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -589,5 +593,5 @@
             "indexes": []
         }
     },
-    "revision": 7
+    "revision": 8
 }

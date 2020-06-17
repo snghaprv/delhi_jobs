@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     models.Recruiter.belongsTo(models.Company, {
       foreignKey: "company_id",
       sourceKey: "id",
+      as :"company"
     });
   };
 
