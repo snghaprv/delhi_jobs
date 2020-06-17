@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    other_phone: { type: DataTypes.STRING },
+    whatsapp_number: { type: DataTypes.STRING },
     email: {
       type: DataTypes.STRING,
       allowNull: true,

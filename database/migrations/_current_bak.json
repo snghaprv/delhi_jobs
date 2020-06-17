@@ -378,6 +378,54 @@
             },
             "indexes": []
         },
+        "Job_Applications": {
+            "tableName": "Job_Applications",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED')"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "js_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "JobSeekers",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "js_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "job_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Jobs",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
         "Job_Skills": {
             "tableName": "Job_Skills",
             "schema": {
@@ -593,5 +641,5 @@
             "indexes": []
         }
     },
-    "revision": 8
+    "revision": 9
 }
