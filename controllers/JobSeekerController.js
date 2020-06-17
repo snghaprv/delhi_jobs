@@ -1,11 +1,11 @@
 const {JobSeekerServices,JobServices,RecommendationServices} = require('../services');
-const {Profile} = JobSeekerServices;
+const {profile} = JobSeekerServices;
 const {BaseRecommender} = RecommendationServices;
 
 const getProfile = async function (req, res) {
   try {
     const jobseeker_id = req.token.id;
-    const jobseeker = await Profile.getProfile(jobseeker_id);
+    const jobseeker = await profile.getProfile(jobseeker_id);
     return res.sendSuccessResponse(jobseeker);
   } catch (error) {
     console.error(error);
@@ -19,7 +19,7 @@ const editProfile = async function (req, res) {
     const {body:edit_fields} = req;
     const jobseeker_id = req.token.id;
     await profile.editProfile(jobseeker_id,edit_fields);
-    const jobseeker = await Profile.getProfile(jobseeker_id);
+    const jobseeker = await profile.getProfile(jobseeker_id);
     return res.sendSuccessResponse(jobseeker);
   } catch (error) {
     console.error(error);
