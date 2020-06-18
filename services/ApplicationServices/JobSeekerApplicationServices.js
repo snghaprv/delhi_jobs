@@ -26,7 +26,7 @@ const changeApplicationStatus = async function (js_id, job_id, status) {
     where: row,
     defaults: row,
   });
-  const application_status = [{...row, updatedAt : new Date(), status: "R_CALLED"}]
+  const application_status = [{...row, updatedAt : new Date()}]
    await Job_Application_Status.bulkCreate(application_status,{
     updateOnDuplicate : ["status","updatedAt"]
    })
