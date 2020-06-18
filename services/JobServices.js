@@ -7,9 +7,13 @@ const {
   Qualification,
   Recruiter,
   Company,
-  sequelize
+  sequelize,
 } = require("../database/models");
-const {JOB_POST_GENDER,WORKING_DAYS,JOB_TYPE} = require("../constants/ENUMS");
+const {
+  JOB_POST_GENDER,
+  WORKING_DAYS,
+  JOB_TYPE,
+} = require("../constants/ENUMS");
 
 const createJob = async function (job_data, recruiter_id) {
   const JOB_EXPIRY_IN_DAYS = 30;
@@ -111,8 +115,14 @@ const getJobsDataForJobSeeker = async function (job_ids) {
   let jobs = await Job.findAll({
     where: { id: job_ids },
     include: inclusions,
-    attributes: ["title", "minimum_salary", "maximum_salary", "createdAt","id"],
-    order : [[sequelize.fn('FIELD', sequelize.col('Job.id'),job_ids )]]
+    attributes: [
+      "title",
+      "minimum_salary",
+      "maximum_salary",
+      "createdAt",
+      "id",
+    ],
+    order: [[sequelize.fn("FIELD", sequelize.col("Job.id"), job_ids)]],
   });
   jobs = jobs.map((job) => job.toJSON());
   jobs = jobs.map((job) => {
@@ -125,8 +135,32 @@ const getJobsDataForJobSeeker = async function (job_ids) {
   return jobs;
 };
 
+const getJobsPostedByRecruiter = async function (recruiter_id) {
+  let jobs = await Job.findAll({
+    where: {
+      recruiter_id,
+    },
+    attributes: ["title", "id", "expiry_date", "status"],
+  });
+  jobs = jobs.map((job) => job.toJSON());
+  jobs = jobs.map((job) => {
+    job.posted_on_label = `Posted ${moment(job.createdAt).format(
+      "DD"
+    )}th ${moment(job.createdAt).format("MMM")} `;
+    return job;
+  });
+  const active_jobs = jobs.filter(job=> job.status =="ACTIVE" && job.expiry_date >= 1)
+};
+const getJobPostedByRecruiter = async function (job_id) {
+
+};
+const editJob = async function (job_id, fields) {};
+
 module.exports = {
   createJob,
   getOneJobDataForJobSeeker,
   getJobsDataForJobSeeker,
+  getJobsPostedByRecruiter,
+  getJobPostedByRecruiter,
+  editJob,
 };
