@@ -81,6 +81,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
+  Job.addHook('beforeValidate', 'Salary Validator', (job, options) => {
+      job = job.toJSON();
+     const  {minimum_salary,maximum_salary} = job;
+     if(minimum_salary >maximum_salary){
+      return Promise.reject(new Error("minimum Salary should be less than maximum salary."));
+     }
+  });
+  Job.addHook('beforeValidate', 'Experience Validator', (job, options) => {
+    job = job.toJSON();
+   const  {minimum_experience,maximum_experience} = job;
+   if(minimum_experience >maximum_experience){
+    return Promise.reject(new Error("minimum Experience should be less than maximum salary."));
+   }
+});
+
   Job.associate = function (models) {
     models.Job.belongsTo(models.Qualification, {
       foreignKey: "qualification_id",
