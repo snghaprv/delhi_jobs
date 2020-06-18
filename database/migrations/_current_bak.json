@@ -85,15 +85,6 @@
                     "field": "name",
                     "seqType": "Sequelize.STRING"
                 },
-                "website": {
-                    "field": "website",
-                    "seqType": "Sequelize.STRING"
-                },
-                "phone": {
-                    "unique": true,
-                    "field": "phone",
-                    "seqType": "Sequelize.STRING"
-                },
                 "address": {
                     "field": "address",
                     "seqType": "Sequelize.STRING"
@@ -547,8 +538,8 @@
                     "field": "phone",
                     "seqType": "Sequelize.STRING"
                 },
-                "other_phone": {
-                    "field": "other_phone",
+                "whatsapp_number": {
+                    "field": "whatsapp_number",
                     "seqType": "Sequelize.STRING"
                 },
                 "email": {
@@ -641,5 +632,5 @@
             "indexes": []
         }
     },
-    "revision": 9
+    "revision": 10
 }

@@ -127,6 +127,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "job_id",
       sourceKey: "id",
     });
+    models.Job.belongsToMany(models.JobSeeker, {
+      through: "Job_Application_Status",
+      foreignKey: "job_id",
+      sourceKey: "id",
+    });
   };
   
   return Job;
