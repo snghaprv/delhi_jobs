@@ -3,10 +3,11 @@ const {
   Locality,
   Category,
   sequelize,
+  Job
 } = require("../../database/models");
 const moment = require("moment");
 
-class BaseRecomemnder {
+class BaseRecommender {
   constructor(jobseeker_id, filters = []) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -171,4 +172,4 @@ class BaseRecomemnder {
 // }
 // test();
 
-module.exports = BaseRecomemnder;
+module.exports = BaseRecommender;

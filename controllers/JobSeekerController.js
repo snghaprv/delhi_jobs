@@ -45,7 +45,7 @@ const deleteProfile = async function (req, res) {
 const getAllJobs = async function (req, res) {
   try {
     const jobseeker_id = req.token.id;
-    const recommender = new BaseRecommender(jobseeker_id);
+    const recommender =await new BaseRecommender(jobseeker_id);
     const job_ids = await recommender.getRecommendedJobs();
     const job_data = await JobServices.getJobsDataForJobSeeker(job_ids);
     return res.sendSuccessResponse({ jobs: job_data });

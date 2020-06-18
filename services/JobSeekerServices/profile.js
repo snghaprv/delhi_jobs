@@ -17,7 +17,7 @@ const allowed_fields = [
   "qualification_id",
   "locality_id",
   "city_id",
-  "Categories",
+  "categories",
   "language_id",
   "other_city"
 ];
@@ -72,9 +72,9 @@ const editProfile = async function (jobseeker_id, fields) {
 
   let fields_to_update = filter(fields, allowed_fields)
   await JobSeeker.update(fields_to_update,{where:{id:jobseeker_id}})
-  if(fields_to_update.Categories){
+  if(fields_to_update.categories){
     const job = await JobSeeker.findOne({where:{id:jobseeker_id}})
-    await job.setCategories(fields_to_update.Categories)
+    await job.setCategories(fields_to_update.categories)
     
   }
 };
