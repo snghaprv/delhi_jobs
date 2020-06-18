@@ -7,7 +7,7 @@ const {
   Qualification,
   Language
 } = require("../../database/models");
-const { gender} = require("../../dumps/Job_Post_Form.json");
+const { JOB_SEEKER_GENDER} = require("../../constants/ENUMS");
 
 const allowed_fields = [
   "name",
@@ -64,7 +64,7 @@ const getProfile = async function (jobseeker_id) {
   });
   
   jobseeker = jobseeker.toJSON();
-  jobseeker.gender = gender.find(g => g.id ==jobseeker.gender )
+  jobseeker.gender = JOB_SEEKER_GENDER.find(g => g.id ==jobseeker.gender )
   return jobseeker;
 };
 

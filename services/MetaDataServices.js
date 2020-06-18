@@ -3,14 +3,23 @@ const categories = require("../dumps/Categories.json");
 const qualifications = require("../dumps/Qualifications.json");
 const localities = require("../dumps/Localities.json");
 const languages = require("../dumps/Languages.json");
-const job_post_form = require("../dumps/Job_Post_Form.json")
-const gender = [
-  { id: "MALE", label: "Male" },
-  { id: "FEMALE", label: "Female" },
-];
+const {
+  JOB_POST_GENDER,
+  JOB_SEEKER_GENDER,
+  JOB_TYPE,
+  WORKING_DAYS,
+} = require("../constants/ENUMS");
 
 const getJobPostForMetaData = async function () {
-  return {...job_post_form,localities,cities,categories,qualifications,};
+  return {
+    job_type: JOB_TYPE,
+    working_days: WORKING_DAYS,
+    gerder: JOB_POST_GENDER,
+    localities,
+    cities,
+    categories,
+    qualifications,
+  };
 };
 
 const getJobSeekerRegistrationMetaData = async function () {
@@ -19,7 +28,7 @@ const getJobSeekerRegistrationMetaData = async function () {
     categories,
     qualifications,
     localities,
-    gender,
+    gender: JOB_SEEKER_GENDER,
     languages,
   };
   return metadata;

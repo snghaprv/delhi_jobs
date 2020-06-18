@@ -9,8 +9,7 @@ const {
   Company,
   sequelize
 } = require("../database/models");
-const Job_Post_Form = require("../dumps/Job_Post_Form.json");
-const { gender, working_days, job_type } = Job_Post_Form;
+const {JOB_POST_GENDER,WORKING_DAYS,JOB_TYPE} = require("../constants/ENUMS");
 
 const createJob = async function (job_data, recruiter_id) {
   const JOB_EXPIRY_IN_DAYS = 30;
@@ -80,9 +79,9 @@ const getOneJobDataForJobSeeker = async function (job_id) {
     },
   });
   job = job.toJSON();
-  job.gender = gender.find((g) => g.id == job.gender).label;
-  job.working_days = working_days.find((wd) => wd.id == job.working_days).label;
-  job.job_type = job_type.find((jt) => jt.id == job.job_type).label;
+  job.gender = JOB_POST_GENDER.find((g) => g.id == job.gender).label;
+  job.working_days = WORKING_DAYS.find((wd) => wd.id == job.working_days).label;
+  job.job_type = JOB_TYPE.find((jt) => jt.id == job.job_type).label;
   job.skills = JSON.parse(job.skills);
   job.category = !!job.category ? job.category.label : null;
   job.locality = !!job.locality ? job.locality.label : null;
