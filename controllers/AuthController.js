@@ -2,7 +2,7 @@ const { JWTUtils } = require("../utils");
 const { OTPServices, JobSeekerServices } = require("../services");
 const { profile } = JobSeekerServices;
 const { getAndSendOTP, verifyOTP } = OTPServices;
-const { JobSeeker, Recruiter } = require("../database/models");
+const { JobSeeker, Recruiter,Company } = require("../database/models");
 const redisKeys = require("../utils/redisKeys");
 const { getJobSeekerKeys, getRecruiterKeys } = redisKeys;
 const {
@@ -110,6 +110,10 @@ const verifyOTPForRecruiter = async function (req, res) {
         phone: phone,
       },
     });
+    if(created){
+      const company = await Company.create({name: null, address:null});
+      recruiter.setCompany(company);
+    }
     const { id: recruiter_id } = recruiter;
     user_token = { recruiter_id };
     const token = JWTUtils.issue(
@@ -123,7 +127,6 @@ const verifyOTPForRecruiter = async function (req, res) {
     if (error == "MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED") {
       return res.sendErrorResponse(OTP_MAX_VERIFY_ERROR);
     }
-
     return res.sendErrorResponse(GENERIC_ERROR);
   }
 };

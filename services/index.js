@@ -6,4 +6,5 @@ module.exports = {
   JobServices: require("./JobServices"),
   RecommendationServices: require("./RecommendationServices"),
   ApplicationServices: require("./ApplicationServices"),
+  RecruiterServices : require('./RecruiterServices')
 };
