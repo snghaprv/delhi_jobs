@@ -85,6 +85,15 @@
                     "field": "name",
                     "seqType": "Sequelize.STRING"
                 },
+                "website": {
+                    "field": "website",
+                    "seqType": "Sequelize.STRING"
+                },
+                "phone": {
+                    "unique": true,
+                    "field": "phone",
+                    "seqType": "Sequelize.STRING"
+                },
                 "address": {
                     "field": "address",
                     "seqType": "Sequelize.STRING"
@@ -417,54 +426,6 @@
             },
             "indexes": []
         },
-        "Job_Application_Status": {
-            "tableName": "Job_Application_Status",
-            "schema": {
-                "id": {
-                    "autoIncrement": true,
-                    "primaryKey": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "status": {
-                    "field": "status",
-                    "seqType": "Sequelize.ENUM('JS_CALLED', 'R_CALLED', 'R_REJECTED')"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "job_id": {
-                    "unique": "Job_Application_Status_js_id_job_id_unique",
-                    "references": {
-                        "model": "Jobs",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "field": "job_id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "js_id": {
-                    "unique": "Job_Application_Status_js_id_job_id_unique",
-                    "references": {
-                        "model": "JobSeekers",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "field": "js_id",
-                    "seqType": "Sequelize.INTEGER"
-                }
-            },
-            "indexes": []
-        },
         "Job_Skills": {
             "tableName": "Job_Skills",
             "schema": {
@@ -586,8 +547,8 @@
                     "field": "phone",
                     "seqType": "Sequelize.STRING"
                 },
-                "whatsapp_number": {
-                    "field": "whatsapp_number",
+                "other_phone": {
+                    "field": "other_phone",
                     "seqType": "Sequelize.STRING"
                 },
                 "email": {
@@ -680,5 +641,5 @@
             "indexes": []
         }
     },
-    "revision": 11
+    "revision": 9
 }
