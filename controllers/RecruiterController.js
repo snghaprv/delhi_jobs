@@ -87,7 +87,7 @@ const getOneJob = async function(req,res){
  try{
   const {job_id} = req.params;
   const job = await JobServices.getJobPostedByRecruiter(job_id); 
-  return res.sendSuccessResponse(job);
+  return res.sendSuccessResponse({job});
  }catch(error){
   console.error(error);
   return res.sendErrorResponse();

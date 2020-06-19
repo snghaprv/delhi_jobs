@@ -6,9 +6,9 @@ const { verify, TYPE } = JWTUtils;
 module.exports = async (req, res, next) => {
   try {
     const recruiter_id = req.token.id;
-    const {job_id} = req.body
+    const {job_id} = req.params;
     const job_data = await Job.findOne({where:{
-        job_id,
+        id:job_id,
         recruiter_id
     }})
     if(!job_data){

@@ -1,7 +1,7 @@
 const express = require("express");
 const RecruiterRouter = express.Router();
 const {RecruiterController} = require("../controllers");
-const {isRecruiterAuthenticated} = require('../middleware')
+const {isRecruiterAuthenticated,isRecruiterAuthenticatedForJob} = require('../middleware')
 const {createJob,editJob,editProfile,getProfile,getAllPostedJobs,getOneJob} = RecruiterController
 
 cb = (req,res) => {
@@ -13,8 +13,13 @@ RecruiterRouter.route("/profile").patch(editProfile);
 RecruiterRouter.route("/profile").get(getProfile);
 RecruiterRouter.route("/jobs").post(createJob);
 RecruiterRouter.route("/jobs").get(getAllPostedJobs);
+
+RecruiterRouter.use("/jobs/:job_id",isRecruiterAuthenticatedForJob);
 RecruiterRouter.route("/jobs/:job_id").get(getOneJob);
 RecruiterRouter.route("/jobs/:job_id").patch(editJob);
+
+
+
 RecruiterRouter.route("/jobs/:job_id/applicants").get(cb);
 RecruiterRouter.route("/jobs/:job_id/applicants/:applicant_id").post(cb);
 
