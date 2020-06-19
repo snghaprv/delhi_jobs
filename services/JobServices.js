@@ -8,7 +8,11 @@ const {
   Recruiter,
   Company,
   sequelize,
+  Job_Application_Status,
+  JobSeeker
 } = require("../database/models");
+const ApplicationServices = require('./ApplicationServices');
+const {RecruiterApplicationServices} =ApplicationServices
 const {
   JOB_POST_GENDER,
   WORKING_DAYS,
@@ -136,10 +140,24 @@ const getJobsDataForJobSeeker = async function (job_ids) {
 };
 
 const getJobsPostedByRecruiter = async function (recruiter_id) {
+  const today = moment();
+  const inclusions = [
+    {
+      model: Recruiter,
+      attributes: ["id"],
+      as: "recruiter",
+      include: {
+        model: Company,
+        attributes: ["name"],
+        as: "company",
+      },
+    }
+  ]
   let jobs = await Job.findAll({
     where: {
       recruiter_id,
     },
+    include:inclusions,
     attributes: ["title", "id", "expiry_date", "status"],
   });
   jobs = jobs.map((job) => job.toJSON());
@@ -149,7 +167,17 @@ const getJobsPostedByRecruiter = async function (recruiter_id) {
     )}th ${moment(job.createdAt).format("MMM")} `;
     return job;
   });
-  const active_jobs = jobs.filter(job=> job.status =="ACTIVE" && job.expiry_date >= 1)
+  const job_ids = jobs.map(({id})=>id);
+  const application_counts = await RecruiterApplicationServices.getApplicationCountForJobs(job_ids);
+  jobs = jobs.map(job => {
+    let {application_count} = application_counts.find(application_count =>application_count.job_id == job.id);
+    job.application_count = application_count;
+    return job;
+  })
+
+  const active_jobs = jobs.filter(job=> job.status =="ACTIVE" && moment(job.expiry_date) >= today);
+  const inactive_jobs = jobs.filter(job=>!(job.status =="ACTIVE" && moment(job.expiry_date) >= today) );
+  return {active_jobs,inactive_jobs};
 };
 const getJobPostedByRecruiter = async function (job_id) {
 

@@ -1,5 +1,5 @@
-const { JobServices,RecruiterServices } = require("../services");
-
+const { JobServices,RecruiterServices,ApplicationServices } = require("../services");
+const {RecruiterApplicationServices} =ApplicationServices
 const createJob = async function (req, res) {
   try {
       const job_data = req.body;
@@ -45,9 +45,25 @@ const getProfile = async function(req,res){
 
 }
 
+const getAllPostedJobs = async function(req,res){
+  try {
+  const recruiter_id = req.token.id;
+  const {active_jobs, inactive_jobs} = await JobServices.getJobsPostedByRecruiter(recruiter_id);
+ 
+
+  return res.sendSuccessResponse({active_jobs,inactive_jobs});
+  } catch(error){
+    console.error(error);
+    return res.sendErrorResponse();
+  }
+
+
+}
+
 module.exports = {
   createJob,
   editJob,
   editProfile,
-  getProfile
+  getProfile,
+  getAllPostedJobs
 };
