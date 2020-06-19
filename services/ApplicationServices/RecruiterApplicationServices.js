@@ -1,14 +1,15 @@
 const {
-    sequelize,
-    Job_Application_Status,
-    Job_Application
-  } = require("../../database/models");
+  sequelize,
+  Job_Application_Status,
+  Job_Application,
+  Sequelize
+} = require("../../database/models");
+const Op = Sequelize.Op;
 
 const APPLICATION_STATUS = {
-    R_CALLED: "R_CALLED",
-    R_REJECTED: "R_REJECTED",
+  R_CALLED: "R_CALLED",
+  R_REJECTED: "R_REJECTED",
 };
-
 
 const getApplicationCountForJobs = async function (job_ids) {
   const query = `SELECT
@@ -40,8 +41,23 @@ const changeApplicationStatus = async function (js_id, job_id, status) {
   return application;
 };
 
+const getApplicationsForAJob = async function (job_id) {
+  let applicants = Job_Application_Status.findAll({
+    where: {
+      job_id,
+      status: {
+        [Op.in]: ["JS_CALLED", "R_CALLED"],
+      }
+    },
+    order: [["updatedAt", "DESC"]],
+    attributes: ["js_id"],
+  });
+  applicants = applicants.map(({ js_id }) => js_id);
+  return applicants;
+};
 module.exports = {
-    APPLICATION_STATUS,
-    getApplicationCountForJobs,
-    changeApplicationStatus
+  APPLICATION_STATUS,
+  getApplicationCountForJobs,
+  changeApplicationStatus,
+  getApplicationsForAJob
 };

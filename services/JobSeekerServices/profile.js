@@ -5,7 +5,8 @@ const {
   City,
   Category,
   Qualification,
-  Language
+  Language,
+  sequelize
 } = require("../../database/models");
 const { JOB_SEEKER_GENDER} = require("../../constants/ENUMS");
 
@@ -83,8 +84,55 @@ const deleteProfile = async function(jobseeker_id){
   await JobSeeker.update({phone:null},{where:{id:jobseeker_id}})
 }
 
+const getApplicantsProfile = async function(applicant_ids){
+  if(applicant_ids.length ==0){
+    return []
+  }
+  const inclusions = [
+    {
+      model: Locality,
+      attributes: ["label"],
+      as: "locality"
+    },
+    {
+      model: Qualification,
+      attributes: ["label"],
+      as : "qualification"
+    },
+    {
+      model: City,
+      attributes: ["label"],
+      as : "city"
+    },
+    {
+      model: Language,
+      attributes: ["label"],
+      as :"language"
+    }
+  ];
+  let applicants = await JobSeeker.findAll({
+    where: {
+      id: applicant_ids,
+    },
+    include: inclusions,
+    attributes:["name","gender","worked_before"],
+    order: [[sequelize.fn("FIELD", sequelize.col("JobSeeker.id"), applicant_ids)]]
+  });
+  applicants = applicants.map(applicant => applicant.toJSON())
+  applicants = applicants.map (applicant => {
+    applicant.gender = applicant.gender ? JOB_SEEKER_GENDER.find(g => g.id == applicant.gender).label : null;
+    applicant.locality = applicant.locality ? applicant.locality.label : null;
+    applicant.qualification = applicant.qualification ? applicant.qualification.label : null;
+    applicant.city = applicant.city ? applicant.city.label : null;
+    applicant.language = applicant.language ? applicant.language.label : null;
+    return applicant
+  })
+  return applicants;
+}
+
 module.exports = {
   getProfile,
   editProfile,
-  deleteProfile
+  deleteProfile,
+  getApplicantsProfile
 };

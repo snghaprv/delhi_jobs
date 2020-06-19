@@ -1,5 +1,7 @@
-const { JobServices,RecruiterServices,ApplicationServices } = require("../services");
-const {RecruiterApplicationServices} =ApplicationServices
+const { JobServices,RecruiterServices,ApplicationServices,JobSeekerServices } = require("../services");
+const {RecruiterApplicationServices} =ApplicationServices;
+const {profile} =JobSeekerServices;
+const {getApplicantsProfile} = profile;
 const createJob = async function (req, res) {
   try {
       const job_data = req.body;
@@ -51,8 +53,6 @@ const getAllPostedJobs = async function(req,res){
   try {
   const recruiter_id = req.token.id;
   const {active_jobs, inactive_jobs} = await JobServices.getJobsPostedByRecruiter(recruiter_id);
- 
-
   return res.sendSuccessResponse({active_jobs,inactive_jobs});
   } catch(error){
     console.error(error);
@@ -81,7 +81,15 @@ const changeApplicationStatus = async function(req,res){
 }
 
 const getApplicationsForAJob = async function(req,res){
-
+try{
+  const {job_id} = req.params;
+  const applicant_ids = await RecruiterApplicationServices.getApplicationsForAJob(job_id);
+  const applicants = await getApplicantsProfile(applicant_ids)
+  return res.sendSuccessResponse({applicants});
+ }catch(error){
+  console.error(error);
+  return res.sendErrorResponse();
+ }
 }
 const getOneJob = async function(req,res){
  try{
