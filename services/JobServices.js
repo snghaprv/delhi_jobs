@@ -98,6 +98,8 @@ const getOneJobDataForJobSeeker = async function (job_id) {
   job.posted_on_label = `Posted ${moment(job.createdAt).format(
     "DD"
   )}th ${moment(job.createdAt).format("MMM")} `;
+  job.shift_start_time = moment(job.shift_start_time,"HH:mm").isValid() ? moment(job.shift_start_time , "HH:mm").format("hh:mm A") : null
+  job.shift_end_time = moment(job.shift_end_time,"HH:mm").isValid() ? moment(job.shift_end_time , "HH:mm").format("hh:mm A") : null
   delete job.createdAt;
   return job;
 };
