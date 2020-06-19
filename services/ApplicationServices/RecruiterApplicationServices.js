@@ -1,6 +1,7 @@
 const {
     sequelize,
     Job_Application_Status,
+    Job_Application
   } = require("../../database/models");
 
 const APPLICATION_STATUS = {
@@ -41,5 +42,6 @@ const changeApplicationStatus = async function (js_id, job_id, status) {
 
 module.exports = {
     APPLICATION_STATUS,
-    getApplicationCountForJobs
+    getApplicationCountForJobs,
+    changeApplicationStatus
 };
