@@ -1,3 +1,4 @@
+const moment = require('moment');
 module.exports = (sequelize, DataTypes) => {
   var Job = sequelize.define("Job", {
     id: {
@@ -46,10 +47,24 @@ module.exports = (sequelize, DataTypes) => {
     shift_start_time: {
       type: DataTypes.TIME,
       allowNull: true,
+      validate : {
+        isTimeValid(value){
+          if(value && !moment(value, "HH:mm").isValid()){
+            throw new Error("INVALID_TIME_FORMAT");
+          }
+        }
+      }
     },
     shift_end_time: {
       type: DataTypes.TIME,
       allowNull: true,
+      validate : {
+        isTimeValid(value){
+          if(value && !moment(value, "HH:mm").isValid()){
+            throw new Error("INVALID_TIME_FORMAT");
+          }
+        }
+      }
     },
     job_address: DataTypes.STRING,
     working_days: {
