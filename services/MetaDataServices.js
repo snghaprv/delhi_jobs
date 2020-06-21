@@ -14,7 +14,7 @@ const getJobPostForMetaData = async function () {
   return {
     job_type: JOB_TYPE,
     working_days: WORKING_DAYS,
-    gerder: JOB_POST_GENDER,
+    gender: JOB_POST_GENDER,
     localities,
     cities,
     categories,
