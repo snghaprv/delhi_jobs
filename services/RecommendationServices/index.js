@@ -1,3 +1,4 @@
 module.exports = {
-    BaseRecommender : require('./BaseRecommender')
+    BaseRecommender : require('./BaseRecommender'),
+    baseFilters : require('./baseFilters')
 }

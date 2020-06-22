@@ -5,7 +5,7 @@ const {
   ApplicationServices,
 } = require("../services");
 const { profile } = JobSeekerServices;
-const { BaseRecommender } = RecommendationServices;
+const { BaseRecommender,baseFilters } = RecommendationServices;
 const { JobSeekerApplicationServices } = ApplicationServices;
 
 const getProfile = async function (req, res) {
@@ -45,10 +45,15 @@ const deleteProfile = async function (req, res) {
 const getAllJobs = async function (req, res) {
   try {
     const jobseeker_id = req.token.id;
-    const recommender =await new BaseRecommender(jobseeker_id);
-    const job_ids = await recommender.getRecommendedJobs();
+    let {filters} = req.body;
+    if(!filters){
+      filters = await baseFilters();
+    } 
+    const recommender =await new BaseRecommender(jobseeker_id,filters);
+    
+    const {job_ids,job_count} = await recommender.getRecommendedJobs();
     const job_data = await JobServices.getJobsDataForJobSeeker(job_ids);
-    return res.sendSuccessResponse({ jobs: job_data });
+    return res.sendSuccessResponse({ jobs: job_data,filters,job_count });
   } catch (error) {
     console.error(error);
     return res.sendErrorResponse();

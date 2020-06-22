@@ -37,4 +37,6 @@ const getJobSeekerRegistrationMetaData = async function () {
 module.exports = {
   getJobPostForMetaData,
   getJobSeekerRegistrationMetaData,
+  localities,
+  categories
 };

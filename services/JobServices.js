@@ -7,7 +7,7 @@ const {
   Qualification,
   Recruiter,
   Company,
-  sequelize
+  sequelize,
 } = require("../database/models");
 const ApplicationServices = require("./ApplicationServices");
 const { RecruiterApplicationServices } = ApplicationServices;
@@ -96,13 +96,20 @@ const getOneJobDataForJobSeeker = async function (job_id) {
   job.posted_on_label = `Posted On ${moment(job.createdAt).format(
     "DD"
   )}th ${moment(job.createdAt).format("MMM")} `;
-  job.shift_start_time = moment(job.shift_start_time,"HH:mm").isValid() ? moment(job.shift_start_time , "HH:mm").format("hh:mm A") : null
-  job.shift_end_time = moment(job.shift_end_time,"HH:mm").isValid() ? moment(job.shift_end_time , "HH:mm").format("hh:mm A") : null
+  job.shift_start_time = moment(job.shift_start_time, "HH:mm").isValid()
+    ? moment(job.shift_start_time, "HH:mm").format("hh:mm A")
+    : null;
+  job.shift_end_time = moment(job.shift_end_time, "HH:mm").isValid()
+    ? moment(job.shift_end_time, "HH:mm").format("hh:mm A")
+    : null;
   delete job.createdAt;
   return job;
 };
 
 const getJobsDataForJobSeeker = async function (job_ids) {
+  if (job_ids.length == 0) {
+    return [];
+  }
   const inclusions = [
     {
       model: Recruiter,
@@ -232,13 +239,13 @@ const getJobPostedByRecruiter = async function (job_id) {
       "job_address",
       "working_days",
       "job_type",
-      "other_city"
+      "other_city",
     ],
   });
   job = job.toJSON();
-  job.working_days = WORKING_DAYS.find(wd=> wd.id==job.working_days);
-  job.job_type = JOB_TYPE.find(jt=> jt.id==job.job_type);
-  job.gender = JOB_POST_GENDER.find(g=> g.id==job.gender);
+  job.working_days = WORKING_DAYS.find((wd) => wd.id == job.working_days);
+  job.job_type = JOB_TYPE.find((jt) => jt.id == job.job_type);
+  job.gender = JOB_POST_GENDER.find((g) => g.id == job.gender);
   job.skills = JSON.parse(job.skills);
   return job;
 };
