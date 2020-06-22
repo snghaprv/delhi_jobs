@@ -85,10 +85,10 @@ const getOneJobDataForJobSeeker = async function (job_id) {
     },
   });
   job = job.toJSON();
-  job.gender = JOB_POST_GENDER.find((g) => g.id == job.gender).label;
-  job.working_days = WORKING_DAYS.find((wd) => wd.id == job.working_days).label;
-  job.job_type = JOB_TYPE.find((jt) => jt.id == job.job_type).label;
-  job.skills = JSON.parse(job.skills);
+  job.gender = !!job.gender?  JOB_POST_GENDER.find((g) => g.id == job.gender).label:job.gender;
+  job.working_days = !!job.working_days  ? WORKING_DAYS.find((wd) => wd.id == job.working_days).label:job.working_days ;
+  job.job_type = !!job.job_type ? JOB_TYPE.find((jt) => jt.id == job.job_type).label:job.job_type;
+  job.skills = !!job.skills ? JSON.parse(job.skills): null;
   job.category = !!job.category ? job.category.label : null;
   job.locality = !!job.locality ? job.locality.label : null;
   job.qualification = !!job.qualification ? job.qualification.label : null;
