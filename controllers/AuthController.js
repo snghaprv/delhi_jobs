@@ -1,5 +1,5 @@
 const { JWTUtils } = require("../utils");
-const { OTPServices, JobSeekerServices } = require("../services");
+const { OTPServices, JobSeekerServices,RecruiterServices } = require("../services");
 const { profile } = JobSeekerServices;
 const { getAndSendOTP, verifyOTP } = OTPServices;
 const { JobSeeker, Recruiter,Company } = require("../database/models");
@@ -121,7 +121,8 @@ const verifyOTPForRecruiter = async function (req, res) {
       RECRUITER_JWT_TOKEN_EXPIRY_TIME,
       JWTUtils.TYPE.LOGIN
     );
-    return res.sendSuccessResponse({ token });
+    const landing_page = await RecruiterServices.getLandingPage(recruiter_id)
+    return res.sendSuccessResponse({ token,landing_page });
   } catch (error) {
     console.error(error);
     if (error == "MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED") {

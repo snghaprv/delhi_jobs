@@ -1,6 +1,6 @@
 const filter = require("filter-object");
 
-const { Recruiter, Company } = require("../database/models");
+const { Recruiter, Company,Job } = require("../database/models");
 
 const editProfile = async function (recruiter_id, fields) {
   const { company } = fields;
@@ -28,8 +28,26 @@ const getProfile = async function (recruiter_id) {
   });
   return data.toJSON()
 };
-
+const getLandingPage = async function(recruiter_id){
+  const LANDING_SCREENS = {
+    JOB_POST:"JOB_POST",
+    EDIT_PROFILE :"EDIT_PROFILE",
+    JOB_LIST:"JOB_LIST"
+  }
+  let landing_screen = null;
+  const profile = await getProfile(recruiter_id);
+  const jobs_count = await Job.count({where: {recruiter_id}})
+  if(profile.name){
+    landing_screen = LANDING_SCREENS.JOB_LIST
+  } else if (jobs_count>0){
+    landing_screen =LANDING_SCREENS.EDIT_PROFILE
+  } else {
+    landing_screen =LANDING_SCREENS.JOB_POST
+  }
+  return landing_screen;
+}
 module.exports = {
   editProfile,
-  getProfile
+  getProfile,
+  getLandingPage
 };
