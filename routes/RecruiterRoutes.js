@@ -2,7 +2,7 @@ const express = require("express");
 const RecruiterRouter = express.Router();
 const {RecruiterController} = require("../controllers");
 const {isRecruiterAuthenticated,isRecruiterAuthenticatedForJob,} = require('../middleware')
-const {createJob,editJob,editProfile,getProfile,getAllPostedJobs,getOneJob,getApplicationsForAJob} = RecruiterController
+const {createJob,editJob,editProfile,getProfile,getAllPostedJobs,getOneJob,getApplicationsForAJob,changeApplicationStatus} = RecruiterController
 
 cb = (req,res) => {
     res.sendSuccessResponse({message: "Implementation Pending..."})
@@ -21,7 +21,8 @@ RecruiterRouter.route("/jobs/:job_id").patch(editJob);
 
 
 RecruiterRouter.route("/jobs/:job_id/applicants").get(getApplicationsForAJob);
-RecruiterRouter.route("/jobs/:job_id/applicants/:applicant_id").post(cb);
+RecruiterRouter.route("/jobs/:job_id/applicants/:applicant_id").post(changeApplicationStatus);
+//Gaurd for POST /jobs/:job_id/applicants/:applicant_id is pending.
 
 
 module.exports = RecruiterRouter;

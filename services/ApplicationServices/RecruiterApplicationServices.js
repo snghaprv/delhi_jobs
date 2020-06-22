@@ -2,7 +2,7 @@ const {
   sequelize,
   Job_Application_Status,
   Job_Application,
-  Sequelize
+  Sequelize,
 } = require("../../database/models");
 const Op = Sequelize.Op;
 
@@ -29,25 +29,35 @@ const getApplicationCountForJobs = async function (job_ids) {
 };
 
 const changeApplicationStatus = async function (js_id, job_id, status) {
+  if(![APPLICATION_STATUS.R_CALLED,APPLICATION_STATUS.R_REJECTED].includes(status)){
+    return;
+  }
   const row = { js_id, job_id, status };
   const application = await Job_Application.findOrCreate({
     where: row,
     defaults: row,
   });
-  const application_status = [{ ...row, updatedAt: new Date() }];
-  await Job_Application_Status.bulkCreate(application_status, {
-    updateOnDuplicate: ["status", "updatedAt"],
-  });
+  const updates = { status, updatedAt: new Date() };
+  await Job_Application_Status.update(
+    updates,
+    {
+      where: {
+        js_id,
+        job_id
+      },
+    }
+  );
   return application;
 };
 
 const getApplicationsForAJob = async function (job_id) {
+  
   let applicants = Job_Application_Status.findAll({
     where: {
       job_id,
       status: {
         [Op.in]: ["JS_CALLED", "R_CALLED"],
-      }
+      },
     },
     order: [["updatedAt", "DESC"]],
     attributes: ["js_id"],
@@ -59,5 +69,5 @@ module.exports = {
   APPLICATION_STATUS,
   getApplicationCountForJobs,
   changeApplicationStatus,
-  getApplicationsForAJob
+  getApplicationsForAJob,
 };
