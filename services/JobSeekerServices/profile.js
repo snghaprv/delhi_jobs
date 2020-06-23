@@ -115,7 +115,7 @@ const getApplicantsProfile = async function(applicant_ids){
       id: applicant_ids,
     },
     include: inclusions,
-    attributes:["name","gender","worked_before","id"],
+    attributes:["name","gender","worked_before","id","phone"],
     order: [[sequelize.fn("FIELD", sequelize.col("JobSeeker.id"), applicant_ids)]]
   });
   applicants = applicants.map(applicant => applicant.toJSON())
