@@ -18,7 +18,7 @@ JobSeekerRouter.route("/profile").get(getProfile);
 JobSeekerRouter.route("/profile").delete(deleteProfile);
 JobSeekerRouter.route("/jobs/:job_id").get(getOneJob);
 JobSeekerRouter.route("/jobs/:job_id/call").post(callRecruiter);
-JobSeekerRouter.route("/jobs").get(getAllJobs);
+JobSeekerRouter.route("/jobs").post(getAllJobs);
 JobSeekerRouter.route("/applications").get(getAppliedJobs);
 
 module.exports = JobSeekerRouter;
