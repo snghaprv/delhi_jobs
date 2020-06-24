@@ -1,8 +1,12 @@
 const { JWTUtils } = require("../utils");
-const { OTPServices, JobSeekerServices,RecruiterServices } = require("../services");
+const {
+  OTPServices,
+  JobSeekerServices,
+  RecruiterServices,
+} = require("../services");
 const { profile } = JobSeekerServices;
 const { getAndSendOTP, verifyOTP } = OTPServices;
-const { JobSeeker, Recruiter,Company } = require("../database/models");
+const { JobSeeker, Recruiter, Company } = require("../database/models");
 const redisKeys = require("../utils/redisKeys");
 const { getJobSeekerKeys, getRecruiterKeys } = redisKeys;
 const {
@@ -61,8 +65,15 @@ const verifyOTPForJobSeeker = async function (req, res) {
       JWTUtils.TYPE.LOGIN
     );
     const jobseeker_profile = await profile.getProfile(jobseeker_id);
-    const { categories } = jobseeker_profile;
-    const landing_page = categories.length > 0 ? "JOB_LISTING" : "REGISTRATION";
+    const { categories, name } = jobseeker_profile;
+
+    let landing_page = "CATEGORIES_SELECTION";
+    if (categories.length > 0) {
+      landing_page = "BASIC_INFORMATION";
+    }
+    if (name) {
+      landing_page = "JOB_LISTING";
+    }
     return res.sendSuccessResponse({ token, landing_page });
   } catch (error) {
     console.error(error);
@@ -110,8 +121,8 @@ const verifyOTPForRecruiter = async function (req, res) {
         phone: phone,
       },
     });
-    if(created){
-      const company = await Company.create({name: null, address:null});
+    if (created) {
+      const company = await Company.create({ name: null, address: null });
       recruiter.setCompany(company);
     }
     const { id: recruiter_id } = recruiter;
@@ -121,8 +132,8 @@ const verifyOTPForRecruiter = async function (req, res) {
       RECRUITER_JWT_TOKEN_EXPIRY_TIME,
       JWTUtils.TYPE.LOGIN
     );
-    const landing_page = await RecruiterServices.getLandingPage(recruiter_id)
-    return res.sendSuccessResponse({ token,landing_page });
+    const landing_page = await RecruiterServices.getLandingPage(recruiter_id);
+    return res.sendSuccessResponse({ token, landing_page });
   } catch (error) {
     console.error(error);
     if (error == "MAX_OTP_ENTERING_ATTEMPTS_EXHAUSTED") {
