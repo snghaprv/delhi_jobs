@@ -89,6 +89,7 @@ class BaseRecommender {
     });
 
     const jobs = data.map(({ job_id }) => job_id);
+    jobs = [...jobs,-1]
     return jobs;
   }
   getEducationQuery() {
