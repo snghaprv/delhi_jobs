@@ -88,7 +88,7 @@ class BaseRecommender {
       replacements: { jobseeker_id: this.jobseeker_id },
     });
 
-    const jobs = data.map(({ job_id }) => job_id);
+    let jobs = data.map(({ job_id }) => job_id);
     jobs = [...jobs,-1]
     return jobs;
   }
