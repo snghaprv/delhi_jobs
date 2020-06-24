@@ -1,9 +1,8 @@
 [
-    { "id": 1, "label": "Below 10th" },
-    { "id": 2, "label": "10th Pass" },
-    { "id": 3, "label": "12th Pass" },
-    { "id": 4, "label": "Diploma" },
-    { "id": 5, "label": "Graduate" },
-    { "id": 6, "label": "Post Graduate" }
+    { "id": 1, "label": "10 वीं से नीचे" },
+    { "id": 2, "label": "10 वीं पास" },
+    { "id": 3, "label": "12 वीं पास" },
+    { "id": 4, "label": "डिप्लोमा" },
+    { "id": 5, "label": "स्नातक" },
+    { "id": 6, "label": "पोस्ट ग्रेजुएट" }
   ]
-  

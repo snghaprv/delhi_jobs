@@ -1,129 +1,167 @@
 [
   {
-    "id": 28,
-    "label": "Delivery",
-    "helptext": "Food Delivery, Courier Delivery etc"
-  },
-  { "id": 38, "label": "Driver", "helptext": "Private Car, Heavy vehicle etc" },
-  {
-    "id": 26,
-    "label": "Warehouse / Logistics",
-    "helptext": "Picker, Packer etc"
-  },
-  {
-    "id": 27,
-    "label": "Manufacturing",
-    "helptext": "Production, Machine Operator etc"
-  },
-  {
-    "id": 32,
-    "label": "Housekeeping / Peon",
-    "helptext": "Corporate Cleaning, Office Boy, etc"
-  },
-  { "id": 33, "label": "Security Guard", "helptext": "Gunman, Bouncer, etc" },
-  { "id": 29, "label": "Beautician", "helptext": "Salon, Hair Stylist, etc" },
-  {
-    "id": 31,
-    "label": "Cook / Chef",
-    "helptext": "Commi Cook, Head Chef, etc"
-  },
-  { "id": 35, "label": "Waiter / Steward", "helptext": "Hospitality" },
-  {
-    "id": 24,
-    "label": "Ward Boy",
-    "helptext": "Nursing Attendant, Patient Assistant etc"
-  },
-  {
-    "id": 20,
-    "label": "Nurse / Compounder",
-    "helptext": "Medical, Patient Care etc"
-  },
-  {
-    "id": 25,
-    "label": "Lab Technician / Pharmacist",
-    "helptext": "Blood Testing, Pharmacy etc"
-  },
-  {
-    "id": 34,
-    "label": "Trainer",
-    "helptext": "Gym Trainer, Voice & Accent Trainer, etc"
-  },
-  {
-    "id": 36,
-    "label": "Event Management",
-    "helptext": "Event Planning & Coordination"
-  },
-  {
     "id": 1,
-    "label": "Back Office / Data Entry",
-    "helptext": "Clerical Work, Data Processing, etc"
-  },
-  {
-    "id": 23,
-    "label": "Telesales / Telemarketing",
-    "helptext": "Outbound Sales, Web Sales, etc"
+    "label": "बैक ऑफिस / डाटा एंट्री",
+    "helptext": "Back Office / Data Entry"
   },
   {
     "id": 2,
-    "label": "Customer Support / TeleCaller",
-    "helptext": "Voice Support, Technical Support, etc"
+    "label": "ग्राहक सहायता / टेली कॉलर",
+    "helptext": "Customer Support / TeleCaller"
   },
   {
     "id": 3,
-    "label": "Sales / Business Development",
-    "helptext": "Lead Generation, B2B Sales, etc"
+    "label": "बिक्री / व्यवसाय विकास",
+    "helptext": "Sales / Business Development"
+  },
+  {
+    "id": 4,
+    "label": "विपणन",
+    "helptext": "Marketing"
+  },
+  {
+    "id": 5,
+    "label": "शिक्षक / शिक्षक / कोचिंग",
+    "helptext": "Teacher / Tutor / Coaching"
   },
   {
     "id": 6,
-    "label": "Marketing",
-    "helptext": "Branding, Digital Marketing, etc"
+    "label": "मुनीम / केशियर",
+    "helptext": "Accountant / Cashier"
   },
   {
-    "id": 19,
-    "label": "Content Writer",
-    "helptext": "Blog/Article Writing, Copy Writing, etc"
+    "id": 7,
+    "label": "रिसेप्शनिस्ट",
+    "helptext": "Receptionist"
   },
   {
-    "id": 21,
-    "label": "Field Sales",
-    "helptext": "On-Field Product Demonstration, B2C Sales, etc"
+    "id": 8,
+    "label": "खुदरा / काउंटर बिक्री",
+    "helptext": "Retail / Counter Sales"
   },
   {
-    "id": 14,
-    "label": "Retail / Counter Sales",
-    "helptext": "Mall, Shop, Showroom, etc"
+    "id": 9,
+    "label": "रिक्रूटर / एचआर / एडमिन",
+    "helptext": "Recruiter / HR / Admin"
   },
-  { "id": 15, "label": "Cashier", "helptext": "Cash Handling, Billing, etc" },
   {
-    "id": 16,
-    "label": "Recruiter / HR / Admin",
-    "helptext": "Recruitment, Sourcing, Training, etc"
+    "id": 10,
+    "label": "ग्राफिक / वेब डिजाइनर",
+    "helptext": "Graphic / Web Designer"
+  },
+  {
+    "id": 11,
+    "label": "आईटी / हार्डवेयर / नेटवर्क इंजीनियर",
+    "helptext": "IT / Hardware / Network Engineer"
+  },
+  {
+    "id": 12,
+    "label": "कंटेंट लेखक",
+    "helptext": "Content Writer"
   },
   {
     "id": 13,
-    "label": "Receptionist",
-    "helptext": "Receptionist, Front Desk Receptionist etc"
+    "label": "नर्स / कम्पाउंडर / वार्ड बॉय",
+    "helptext": "Nurse / Compounder / Ward Boy"
   },
-  { "id": 11, "label": "Teacher / Tutor", "helptext": "School, tuitions etc." },
+  {
+    "id": 14,
+    "label": "फील्ड सेल्स",
+    "helptext": "Field Sales"
+  },
+  {
+    "id": 15,
+    "label": "टेलिसलेस / टेलीमार्केटिंग",
+    "helptext": "Telesales / Telemarketing"
+  },
+  {
+    "id": 16,
+    "label": "लैब तकनीशियन / फार्मासिस्ट",
+    "helptext": "Lab Technician / Pharmacist"
+  },
   {
     "id": 17,
-    "label": "Graphic / Web Designer",
-    "helptext": "Logo Design, Photoshop, Illustrator, etc"
+    "label": "गोदाम / रसद",
+    "helptext": "Warehouse / Logistics"
   },
   {
     "id": 18,
-    "label": "IT / Hardware / Network Engineer",
-    "helptext": "IT Support, Installation, etc"
+    "label": "विनिर्माण / मजदूर",
+    "helptext": "Manufacturing / Factory worker / Labor"
+  },
+  {
+    "id": 19,
+    "label": "डिलीवरी",
+    "helptext": "Delivery"
+  },
+  {
+    "id": 20,
+    "label": "ब्यूटिशियन / स्पा / वेलनेस",
+    "helptext": "Beautician / Spa / Wellness"
+  },
+  {
+    "id": 21,
+    "label": "वास्तुकार / आंतरिक डिजाइनर",
+    "helptext": "Architect / Interior Designer"
+  },
+  {
+    "id": 22,
+    "label": "रसोइया / बावर्ची",
+    "helptext": "Cook / Chef"
+  },
+  {
+    "id": 23,
+    "label": "चपरासी",
+    "helptext": "Housekeeping / Peon"
+  },
+  {
+    "id": 24,
+    "label": "सुरक्षा कर्मी",
+    "helptext": "Security Guard"
+  },
+  {
+    "id": 25,
+    "label": "ट्रेनर",
+    "helptext": "Trainer / Fitness"
+  },
+  {
+    "id": 26,
+    "label": "वेटर / स्टूवर्ड",
+    "helptext": "Waiter / Steward"
+  },
+  {
+    "id": 27,
+    "label": "इवेंट मैनेजमेंट",
+    "helptext": "Event Management"
+  },
+  {
+    "id": 28,
+    "label": "कानूनी",
+    "helptext": "Legal"
+  },
+  {
+    "id": 29,
+    "label": "चालक",
+    "helptext": "Driver"
   },
   {
     "id": 30,
-    "label": "Architect / Interior Designer",
-    "helptext": "Project Architect, Interior decorator, etc"
+    "label": "दर्जी / डिजाइनर / कार्यकर्ता परिधान",
+    "helptext": "Tailor / Designer / Worker Garment"
   },
-  { "id": 37, "label": "Legal", "helptext": "Lawyer, Advocate, etc" },
   {
-    "id": 12,
-    "label": "Accountant",
-    "helptext": "Chartered Accountant, Accounts Assistant etc"
+    "id": 31,
+    "label": "होम सर्विसेज - पेंटर, प्लम्बर, इलेक्ट्रीशियन आदि",
+    "helptext": "Home services - Painter, Plumber, Electrician etc"
+  },
+  {
+    "id": 32,
+    "label": "नौकरानी / सफाईकर्मी / घरेलू सहायिका",
+    "helptext": "Maid / Cleaner / Domestic helper"
+  },
+  {
+    "id": 33,
+    "label": "स्वच्छता / अपशिष्ट प्रबंधन",
+    "helptext": "Sanitation / Waste Manageent"
   }
 ]
