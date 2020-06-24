@@ -8,13 +8,14 @@ const Op = Sequelize.Op;
 const APPLICATION_STATUS = {
   JS_VIEWED: "JS_VIEWED",
   JS_CALLED: "JS_CALLED",
+  R_CALLED: "R_CALLED"
 };
 const getAppliedJobs = async function (jobseeker_id) {
   let applications = Job_Application_Status.findAll({
     where: {
       js_id: jobseeker_id,
       status: {
-        [Op.in]: ["JS_CALLED", "R_CALLED"],
+        [Op.in]: [APPLICATION_STATUS.JS_CALLED, APPLICATION_STATUS.R_CALLED],
       },
     },
     attributes: ["job_id", "status","updatedAt"],
@@ -22,7 +23,11 @@ const getAppliedJobs = async function (jobseeker_id) {
   });
   applications = applications.map((application) => application.toJSON());
   applications = applications.map((application) => {
-    application.last_action_label = `You called ${moment(application.updatedAt).fromNow(true)} ago` ;
+    let last_action_label = `You called ${moment(application.updatedAt).fromNow(true)} ago` ;
+    if(application.status ==APPLICATION_STATUS.R_CALLED){
+       last_action_label = `Recruiter called you ${moment(application.updatedAt).fromNow(true)} ago` ;
+    }
+    application.last_action_label = last_action_label;
     delete application.updatedAt
     return application;
   });

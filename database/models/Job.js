@@ -42,7 +42,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     incentives_applicable: DataTypes.BOOLEAN,
     skills : {
-      type:DataTypes.STRING
+      type:DataTypes.STRING,
+      validate : {
+        max:255
+      }
     },
     shift_start_time: {
       type: DataTypes.TIME,
