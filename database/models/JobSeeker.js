@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     name: DataTypes.STRING,
-    gender: DataTypes.ENUM("MALE", "FEMALE"),
+    gender: DataTypes.ENUM("MALE", "FEMALE","OTHER"),
     worked_before: {
       type: DataTypes.BOOLEAN,
       allowNull: true,

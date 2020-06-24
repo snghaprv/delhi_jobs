@@ -380,7 +380,7 @@
                 },
                 "status": {
                     "field": "status",
-                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED')"
+                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED', 'R_REJECTED')"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -412,6 +412,48 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Job_Application_Status": {
+            "tableName": "Job_Application_Status",
+            "schema": {
+                "status": {
+                    "field": "status",
+                    "seqType": "Sequelize.ENUM('JS_CALLED', 'R_CALLED', 'R_REJECTED')"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "job_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Jobs",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "js_id": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "JobSeekers",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "js_id",
                     "seqType": "Sequelize.INTEGER"
                 }
             },
@@ -632,5 +674,5 @@
             "indexes": []
         }
     },
-    "revision": 10
+    "revision": 11
 }

@@ -164,16 +164,24 @@
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "skills": {
+                    "validate": {
+                        "len": [
+                            0,
+                            255
+                        ]
+                    },
                     "field": "skills",
                     "seqType": "Sequelize.STRING"
                 },
                 "shift_start_time": {
                     "allowNull": true,
+                    "validate": {},
                     "field": "shift_start_time",
                     "seqType": "Sequelize.TIME"
                 },
                 "shift_end_time": {
                     "allowNull": true,
+                    "validate": {},
                     "field": "shift_end_time",
                     "seqType": "Sequelize.TIME"
                 },
@@ -290,7 +298,7 @@
                 },
                 "gender": {
                     "field": "gender",
-                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE')"
+                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE', 'OTHER')"
                 },
                 "worked_before": {
                     "allowNull": true,
@@ -674,5 +682,5 @@
             "indexes": []
         }
     },
-    "revision": 11
+    "revision": 12
 }
