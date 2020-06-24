@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     skills : {
       type:DataTypes.STRING,
       validate : {
-        max:255
+        len:[0,255]
       }
     },
     shift_start_time: {
