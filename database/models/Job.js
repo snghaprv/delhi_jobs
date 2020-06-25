@@ -110,7 +110,7 @@ module.exports = (sequelize, DataTypes) => {
     job = job.toJSON();
    const  {minimum_experience,maximum_experience} = job;
    if(Number(minimum_experience) >Number(maximum_experience)){
-    return Promise.reject(new Error("minimum Experience should be less than maximum salary."));
+    return Promise.reject(new Error("minimum Experience should be less than maximum Experience."));
    }
 });
 
