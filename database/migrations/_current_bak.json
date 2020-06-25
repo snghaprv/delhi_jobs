@@ -164,16 +164,24 @@
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "skills": {
+                    "validate": {
+                        "len": [
+                            0,
+                            255
+                        ]
+                    },
                     "field": "skills",
                     "seqType": "Sequelize.STRING"
                 },
                 "shift_start_time": {
                     "allowNull": true,
+                    "validate": {},
                     "field": "shift_start_time",
                     "seqType": "Sequelize.TIME"
                 },
                 "shift_end_time": {
                     "allowNull": true,
+                    "validate": {},
                     "field": "shift_end_time",
                     "seqType": "Sequelize.TIME"
                 },
@@ -290,7 +298,7 @@
                 },
                 "gender": {
                     "field": "gender",
-                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE')"
+                    "seqType": "Sequelize.ENUM('MALE', 'FEMALE', 'OTHER')"
                 },
                 "worked_before": {
                     "allowNull": true,
@@ -380,7 +388,7 @@
                 },
                 "status": {
                     "field": "status",
-                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED', 'R_REJECTED')"
+                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED', 'R_REJECTED', 'JS_WHATSAPP')"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -423,6 +431,14 @@
                 "status": {
                     "field": "status",
                     "seqType": "Sequelize.ENUM('JS_CALLED', 'R_CALLED', 'R_REJECTED')"
+                },
+                "js_last_action": {
+                    "field": "js_last_action",
+                    "seqType": "Sequelize.ENUM('JS_CALLED', 'JS_WHATSAPP')"
+                },
+                "r_last_action": {
+                    "field": "r_last_action",
+                    "seqType": "Sequelize.ENUM('R_CALLED', 'R_REJECTED')"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -674,5 +690,5 @@
             "indexes": []
         }
     },
-    "revision": 11
+    "revision": 13
 }

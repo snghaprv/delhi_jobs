@@ -2,7 +2,7 @@ module.exports = (sequelize, DataTypes) => {
     var Job_Application = sequelize.define("Job_Application", {
       id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
       status: {
-          type :DataTypes.ENUM("JS_VIEWED", "JS_CALLED", "R_CALLED","R_REJECTED")
+          type :DataTypes.ENUM("JS_VIEWED", "JS_CALLED", "R_CALLED","R_REJECTED","JS_WHATSAPP")
       },
     }, );
     Job_Application.associate = function (models) {
