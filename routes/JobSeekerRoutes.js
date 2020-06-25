@@ -10,6 +10,7 @@ const {
   getAllJobs,
   getAppliedJobs,
   callRecruiter,
+  ApplyForAJob
 } = JobSeekerController;
 
 JobSeekerRouter.use("/", isJobSeekerAuthenticated);
@@ -17,7 +18,8 @@ JobSeekerRouter.route("/edit-profile").post(editProfile);
 JobSeekerRouter.route("/profile").get(getProfile);
 JobSeekerRouter.route("/profile").delete(deleteProfile);
 JobSeekerRouter.route("/jobs/:job_id").get(getOneJob);
-JobSeekerRouter.route("/jobs/:job_id/call").post(callRecruiter);
+JobSeekerRouter.route("/jobs/:job_id/call").post(callRecruiter);// TO REMOVE
+JobSeekerRouter.route("/jobs/:job_id/application").post(ApplyForAJob);
 JobSeekerRouter.route("/jobs").post(getAllJobs);
 JobSeekerRouter.route("/applications").get(getAppliedJobs);
 

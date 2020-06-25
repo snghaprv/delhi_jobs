@@ -108,6 +108,26 @@ const callRecruiter = async function (req, res) {
   }
 };
 
+const ApplyForAJob = async function (req, res) {
+  const {
+    changeApplicationStatus,
+  } = JobSeekerApplicationServices;
+  try {
+    const jobseeker_id = req.token.id;
+    const { job_id } = req.params;
+    const {status} = req.body;
+    await changeApplicationStatus(
+      jobseeker_id,
+      job_id,
+      status
+    );
+    return res.sendSuccessResponse();
+  } catch (error) {
+    console.error(error);
+    return res.sendErrorResponse();
+  }
+};
+
 module.exports = {
   getProfile,
   editProfile,
@@ -116,4 +136,5 @@ module.exports = {
   getOneJob,
   getAppliedJobs,
   callRecruiter,
+  ApplyForAJob
 };
