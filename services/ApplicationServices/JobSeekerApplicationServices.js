@@ -30,16 +30,20 @@ const getAppliedJobs = async function (jobseeker_id) {
   applications = applications.map((application) => application.toJSON());
   applications = applications.map((application) => {
     let last_action_label;
+    let status; // last_action_label color is determined by this. 
     if(!application.r_last_action ){
        last_action_label = `You contacted ${moment(application.updatedAt).fromNow(
         true
       )} ago`;
+      status =R_LAST_ACTION.R_CALLED
     } else {
       last_action_label = `Recruiter contacted you ${moment(
         application.updatedAt
-      ).fromNow(true)} ago`
+      ).fromNow(true)} ago`;
+      status = JS_LAST_ACTION.JS_CALLED 
     }
     application.last_action_label = last_action_label;
+    application.status =status;
     delete application.updatedAt;
     delete application.js_last_action;
     delete application.r_last_action;
