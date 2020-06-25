@@ -35,12 +35,12 @@ const getAppliedJobs = async function (jobseeker_id) {
        last_action_label = `You contacted ${moment(application.updatedAt).fromNow(
         true
       )} ago`;
-      status =R_LAST_ACTION.R_CALLED
+      status =JS_LAST_ACTION.JS_CALLED 
     } else {
       last_action_label = `Recruiter contacted you ${moment(
         application.updatedAt
       ).fromNow(true)} ago`;
-      status = JS_LAST_ACTION.JS_CALLED 
+      status = R_LAST_ACTION.R_CALLED
     }
     application.last_action_label = last_action_label;
     application.status =status;
