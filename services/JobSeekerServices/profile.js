@@ -20,7 +20,8 @@ const allowed_fields = [
   "city_id",
   "categories",
   "language_id",
-  "other_city"
+  "other_city",
+  "is_english_proficient"
 ];
 
 const getProfile = async function (jobseeker_id) {
@@ -115,7 +116,7 @@ const getApplicantsProfile = async function(applicant_ids){
       id: applicant_ids,
     },
     include: inclusions,
-    attributes:["name","gender","worked_before","id","phone"],
+    attributes:["name","gender","worked_before","id","phone","is_english_proficient"],
     order: [[sequelize.fn("FIELD", sequelize.col("JobSeeker.id"), applicant_ids)]]
   });
   applicants = applicants.map(applicant => applicant.toJSON())

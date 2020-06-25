@@ -320,6 +320,11 @@
                     "field": "other_city",
                     "seqType": "Sequelize.STRING"
                 },
+                "is_english_proficient": {
+                    "allowNull": true,
+                    "field": "is_english_proficient",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -686,5 +691,5 @@
             "indexes": []
         }
     },
-    "revision": 14
+    "revision": 15
 }

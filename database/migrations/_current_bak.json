@@ -428,10 +428,6 @@
         "Job_Application_Status": {
             "tableName": "Job_Application_Status",
             "schema": {
-                "status": {
-                    "field": "status",
-                    "seqType": "Sequelize.ENUM('JS_CALLED', 'R_CALLED', 'R_REJECTED')"
-                },
                 "js_last_action": {
                     "field": "js_last_action",
                     "seqType": "Sequelize.ENUM('JS_CALLED', 'JS_WHATSAPP')"
@@ -690,5 +686,5 @@
             "indexes": []
         }
     },
-    "revision": 13
+    "revision": 14
 }

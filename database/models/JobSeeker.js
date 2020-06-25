@@ -31,6 +31,10 @@ module.exports = (sequelize, DataTypes) => {
     other_city: {
       type: DataTypes.STRING,
       allowNull: true,
+    },
+    is_english_proficient: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
     }
   });
   JobSeeker.associate = function (models) {
