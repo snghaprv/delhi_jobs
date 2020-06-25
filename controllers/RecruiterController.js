@@ -83,9 +83,11 @@ const changeApplicationStatus = async function(req,res){
 const getApplicationsForAJob = async function(req,res){
 try{
   const {job_id} = req.params;
+  const job = await JobServices.getJobPostedByRecruiter(job_id); 
+  const {title} =job;
   const applicant_ids = await RecruiterApplicationServices.getApplicationsForAJob(job_id);
   const applicants = await getApplicantsProfile(applicant_ids)
-  return res.sendSuccessResponse({applicants});
+  return res.sendSuccessResponse({applicants,title});
  }catch(error){
   console.error(error);
   return res.sendErrorResponse();
