@@ -91,7 +91,7 @@ const getAppliedJobs = async function (req, res) {
 const callRecruiter = async function (req, res) {
   const {
     changeApplicationStatus,
-    APPLICATION_STATUS,
+    JS_LAST_ACTION,
   } = JobSeekerApplicationServices;
   try {
     const jobseeker_id = req.token.id;
@@ -99,7 +99,7 @@ const callRecruiter = async function (req, res) {
     await changeApplicationStatus(
       jobseeker_id,
       job_id,
-      APPLICATION_STATUS.JS_CALLED
+      JS_LAST_ACTION.JS_CALLED
     );
     return res.sendSuccessResponse();
   } catch (error) {

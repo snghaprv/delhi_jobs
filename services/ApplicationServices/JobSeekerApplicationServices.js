@@ -5,30 +5,44 @@ const {
   Sequelize,
 } = require("../../database/models");
 const Op = Sequelize.Op;
-const APPLICATION_STATUS = {
-  JS_VIEWED: "JS_VIEWED",
+const JS_LAST_ACTION = {
   JS_CALLED: "JS_CALLED",
-  R_CALLED: "R_CALLED"
+  JS_WHATSAPP: "JS_WHATSAPP",
+};
+const R_LAST_ACTION = {
+  R_CALLED: "R_CALLED",
+  R_REJECTED: "R_REJECTED",
 };
 const getAppliedJobs = async function (jobseeker_id) {
   let applications = Job_Application_Status.findAll({
     where: {
       js_id: jobseeker_id,
-      status: {
-        [Op.in]: [APPLICATION_STATUS.JS_CALLED, APPLICATION_STATUS.R_CALLED],
+      js_last_action: {
+        [Op.in]: [JS_LAST_ACTION.JS_CALLED, JS_LAST_ACTION.JS_WHATSAPP],
       },
+      r_last_action: {
+        [Op.or] : [{[Op.in]: [R_LAST_ACTION.R_CALLED]}, {[Op.is]: null}],
+      }
     },
-    attributes: ["job_id", "status","updatedAt"],
+    attributes: ["job_id", "js_last_action", "r_last_action", "updatedAt"],
     order: [["updatedAt", "DESC"]],
   });
   applications = applications.map((application) => application.toJSON());
   applications = applications.map((application) => {
-    let last_action_label = `You called ${moment(application.updatedAt).fromNow(true)} ago` ;
-    if(application.status ==APPLICATION_STATUS.R_CALLED){
-       last_action_label = `Recruiter called you ${moment(application.updatedAt).fromNow(true)} ago` ;
+    let last_action_label;
+    if(!application.r_last_action ){
+       last_action_label = `You contacted ${moment(application.updatedAt).fromNow(
+        true
+      )} ago`;
+    } else {
+      last_action_label = `Recruiter contacted you ${moment(
+        application.updatedAt
+      ).fromNow(true)} ago`
     }
     application.last_action_label = last_action_label;
-    delete application.updatedAt
+    delete application.updatedAt;
+    delete application.js_last_action;
+    delete application.r_last_action;
     return application;
   });
   return applications;
@@ -40,17 +54,18 @@ const changeApplicationStatus = async function (js_id, job_id, status) {
     where: row,
     defaults: row,
   });
-  if (status == APPLICATION_STATUS.JS_CALLED) {
-    const application_status = [{ ...row, updatedAt: new Date() }];
+  if ([JS_LAST_ACTION.JS_CALLED,JS_LAST_ACTION.JS_WHATSAPP].includes(status)) {
+    const application_status = [{ js_id,job_id,js_last_action:status, updatedAt: new Date() }];
     await Job_Application_Status.bulkCreate(application_status, {
-      ignoreDuplicates: true,
+      updateOnDuplicate: ["js_last_action","updatedAt"],
     });
   }
   return application;
 };
 
 module.exports = {
-  APPLICATION_STATUS,
+  JS_LAST_ACTION,
+  R_LAST_ACTION,
   getAppliedJobs,
   changeApplicationStatus,
 };
