@@ -88,26 +88,6 @@ const getAppliedJobs = async function (req, res) {
   }
 };
 
-const callRecruiter = async function (req, res) {
-  const {
-    changeApplicationStatus,
-    JS_LAST_ACTION,
-  } = JobSeekerApplicationServices;
-  try {
-    const jobseeker_id = req.token.id;
-    const { job_id } = req.params;
-    await changeApplicationStatus(
-      jobseeker_id,
-      job_id,
-      JS_LAST_ACTION.JS_CALLED
-    );
-    return res.sendSuccessResponse();
-  } catch (error) {
-    console.error(error);
-    return res.sendErrorResponse();
-  }
-};
-
 const ApplyForAJob = async function (req, res) {
   const {
     changeApplicationStatus,
@@ -135,6 +115,5 @@ module.exports = {
   getAllJobs,
   getOneJob,
   getAppliedJobs,
-  callRecruiter,
   ApplyForAJob
 };
