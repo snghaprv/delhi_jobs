@@ -77,7 +77,7 @@ const getAppliedJobs = async function (req, res) {
   }
 };
 
-const ApplyForAJob = async function (req, res) {
+const applyForAJob = async function (req, res) {
   const {
     changeApplicationStatus,
   } = JobSeekerApplicationServices;
@@ -103,5 +103,5 @@ module.exports = {
   getAllJobs,
   getOneJob,
   getAppliedJobs,
-  ApplyForAJob
+  applyForAJob
 };
