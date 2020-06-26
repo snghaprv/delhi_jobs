@@ -31,17 +31,6 @@ const editProfile = async function (req, res) {
     return res.sendErrorResponse();
   }
 };
-
-const deleteProfile = async function (req, res) {
-  try {
-    const jobseeker_id = req.token.id;
-    await profile.deleteProfile(jobseeker_id);
-    return res.sendSuccessResponse();
-  } catch (error) {
-    console.error(error);
-    return res.sendErrorResponse();
-  }
-};
 const getAllJobs = async function (req, res) {
   try {
     const jobseeker_id = req.token.id;
@@ -111,7 +100,6 @@ const ApplyForAJob = async function (req, res) {
 module.exports = {
   getProfile,
   editProfile,
-  deleteProfile,
   getAllJobs,
   getOneJob,
   getAppliedJobs,

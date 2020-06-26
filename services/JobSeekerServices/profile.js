@@ -66,7 +66,7 @@ const getProfile = async function (jobseeker_id) {
   });
   
   jobseeker = jobseeker.toJSON();
-  jobseeker.gender = JOB_SEEKER_GENDER.find(g => g.id ==jobseeker.gender )
+  jobseeker.gender =  jobseeker.gender ? JOB_SEEKER_GENDER.find(g => g.id ==jobseeker.gender ) : null;
   return jobseeker;
 };
 
@@ -75,8 +75,8 @@ const editProfile = async function (jobseeker_id, fields) {
   let fields_to_update = filter(fields, allowed_fields)
   await JobSeeker.update(fields_to_update,{where:{id:jobseeker_id}})
   if(fields_to_update.categories){
-    const job = await JobSeeker.findOne({where:{id:jobseeker_id}})
-    await job.setCategories(fields_to_update.categories)
+    const jobseeker = await JobSeeker.findOne({where:{id:jobseeker_id}})
+    await jobseeker.setCategories(fields_to_update.categories)
     
   }
 };
