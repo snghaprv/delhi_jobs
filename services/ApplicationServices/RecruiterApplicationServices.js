@@ -4,7 +4,7 @@ const {
   Job_Application,
   Sequelize,
 } = require("../../database/models");
-const Op = Sequelize.Op;
+const {Op} = Sequelize;
 
 const JS_LAST_ACTION = {
   JS_CALLED: "JS_CALLED",
