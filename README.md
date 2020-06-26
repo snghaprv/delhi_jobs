@@ -8,6 +8,13 @@ Node.js v10.16.0+
 MySQL v8.0.20+
 Redis v5.0.4+
  ```
+ 
+ The current project is using KALEYRA for sending SMS. To change the SMS provider , change the following snippet in servicers/SMS.js file
+ 
+ ```javascript
+ let url = `https://api-global.kaleyra.com/v4/?method=sms&api_key=${KALEYRA_KEYS[message_type]}&to=91${phone}&message=${content}&format=1122334455667788991010___XXXXXXXXXX&sender=${process.env.KALEYRA_SENDER_ID}`
+``` 
+ 
 ## Deployment
 
 git clone the repo using following command 
@@ -48,12 +55,12 @@ Load Seed Data by running the following command:
 ```javascript
 node_modules/.bin/sequelize db:seed:all
 ```
-To run the run in development mode:
+To run the application in development mode: choose NODE_ENV as development
 ```javascript
 npm start
 ```
 
-To run the run in production mode:
+To run the application in production enviorment: Change NODE_ENV in .env to production and use forever or pm2 for running the application
 ```javascript
 forever start app.js
 ```
