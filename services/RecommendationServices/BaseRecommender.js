@@ -40,7 +40,7 @@ class BaseRecommender {
           actioned_jobs: this.actioned_jobs,
         };
         this.job_ids = [];
-        this.job_count =0;
+        this.job_count = 0;
 
         this.setFilters(filters);
         resolve(this);
@@ -89,7 +89,7 @@ class BaseRecommender {
     });
 
     let jobs = data.map(({ job_id }) => job_id);
-    jobs = [...jobs,-1]
+    jobs = [...jobs, -1];
     return jobs;
   }
   getEducationQuery() {
@@ -115,6 +115,7 @@ class BaseRecommender {
     let GENDER = {
       MALE: ` (j.gender IN ('MALE','ANY')) `,
       FEMALE: ` (j.gender IN ('FEMALE','ANY')) `,
+      OTHER: ` (j.gender IN ('MALE','FEMALE','ANY')) `,
       null: ` (j.gender IN ('ANY')) `,
       "": `(j.gender IN ('ANY'))`, // Handling edge case of empty string as user gender.
     };
@@ -161,6 +162,7 @@ class BaseRecommender {
   }
 
   getDistanceScore(multiplier = 1) {
+    //Proximity Logic to put here.
     let distanceString = ` WHEN 
                               (6371 * 2 * ASIN(SQRT(POWER(SIN((${this.geolocation.latitude} - abs(l.latitude)) * pi()/180 / 2),
                                                         2) + COS(${this.geolocation.latitude} * pi()/180 ) * COS(abs(l.latitude) * pi()/180) * POWER(SIN((${this.geolocation.longitude} - l.longitude) * pi()/180 / 2), 2) ))
@@ -193,6 +195,24 @@ class BaseRecommender {
 
     return { rankString };
   }
+
+  GetFreshNessScore(multiplier = 1) {
+    let freshNessString = ` WHEN TIMESTAMPDIFF(hour,j.createdAt,now() ) `;
+
+    let rankString = `CASE 
+                        ${freshNessString} <  48 THEN  ${1 * multiplier}
+                        ${freshNessString} <  168 THEN  ${0.9 * multiplier}
+                        ${freshNessString} < 336 THEN  ${0.8 * multiplier}
+                        ${freshNessString} < 504 THEN  ${0.7 * multiplier}
+                        ${freshNessString} < 720 THEN  ${0.6 * multiplier}
+                        ${freshNessString} < 1080 THEN  ${0.5 * multiplier}
+                        ${freshNessString} < 1440 THEN  ${0.3 * multiplier}
+                        ${freshNessString} < 2160 THEN  ${0.2 * multiplier}
+                      ELSE ${0 * multiplier} 
+                      END`;
+
+    return { rankString };
+  }
   async getRecommendedJobs() {
     let jobs = await Job.findAll({
       attributes: ["id"],
@@ -203,59 +223,66 @@ class BaseRecommender {
   }
 
   async getRecommendedJobs() {
+    const CATEGORY_MAX_SCORE = 50;
+    const FRESHNESS_MAX_SCORE = 30;
+    const DISTANCE_MAX_SCORE = 20;
     const {
       baseQueryProjection,
       baseQuerySource,
       baseQueryFilter,
     } = this.getBaseQueryStrings();
 
-    const distanceScore = this.getDistanceScore().rankString;
-    const categoryScore = this.getCategoryScore().rankString;
+    const distanceScore = this.getDistanceScore(DISTANCE_MAX_SCORE).rankString;
+    const categoryScore = this.getCategoryScore(CATEGORY_MAX_SCORE).rankString;
+    const freshNessScore = this.GetFreshNessScore(FRESHNESS_MAX_SCORE)
+      .rankString;
     let whereClause = [`WHERE ${baseQueryFilter}`];
 
-        if(Object.keys(this.filterString).length>0){
-          whereClause = [...whereClause,...this.filterString];
-        }
-        let whereString = whereClause.join(` AND `);
+    if (Object.keys(this.filterString).length > 0) {
+      whereClause = [...whereClause, ...this.filterString];
+    }
+    let whereString = whereClause.join(` AND `);
 
-        const job_query =`SELECT
+    const job_query = `SELECT
                     ${baseQueryProjection},
+                    ${distanceScore} AS distanceScore,
+                    ${categoryScore} AS categoryScore,
+                    ${freshNessScore} AS freshNessScore,
                     ${distanceScore} +
-                    ${categoryScore}
+                    ${categoryScore} + 
+                    ${freshNessScore}
                     AS score 
                     ${baseQuerySource}
                     ${whereString} 
                     ORDER BY score DESC,  j.id DESC
-             `
-       const job_count_query = `SELECT 
+             `;
+    const job_count_query = `SELECT 
                                   COUNT(*) AS job_count
                                 ${baseQuerySource}
                                 ${whereString} 
-                                `
-     await this.getJobsData(job_query,job_count_query);
-     return {
-       job_ids : this.job_ids,
-       job_count : this.job_count
-     } 
+                                `;
+    await this.getJobsData(job_query, job_count_query);
+    return {
+      job_ids: this.job_ids,
+      job_count: this.job_count,
+    };
   }
 
-
-  async getJobsData(job_query,job_count_query){
-
-    let [job_ids,[count]] = await Promise.all([
-        sequelize.query(job_query, {
-            replacements: this.replacements,
-            type: sequelize.QueryTypes.SELECT
-        }),
-        sequelize.query(job_count_query, {
-            replacements: this.replacements,
-            type: sequelize.QueryTypes.SELECT
-        })
-    ])
-    job_ids = job_ids.map(({id})=>id);
+  async getJobsData(job_query, job_count_query) {
+    let [job_ids, [count]] = await Promise.all([
+      sequelize.query(job_query, {
+        replacements: this.replacements,
+        type: sequelize.QueryTypes.SELECT,
+      }),
+      sequelize.query(job_count_query, {
+        replacements: this.replacements,
+        type: sequelize.QueryTypes.SELECT,
+      }),
+    ]);
+    job_ids = job_ids.map(({ id }) => id);
     this.job_ids = job_ids;
-    this.job_count =count.job_count;
-}
+    this.job_count = count.job_count;
+  }
 }
 
 module.exports = BaseRecommender;
