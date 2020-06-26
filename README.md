@@ -8,6 +8,13 @@ Node.js v10.16.0+
 MySQL v8.0.20+
 Redis v5.0.4+
  ```
+ 
+ The current project is using KALEYRA for sending SMS. To change the SMS provider , change the following snippet in servicers/SMS.js file
+ 
+ ```javascript
+ let url = `https://api-global.kaleyra.com/v4/?method=sms&api_key=${KALEYRA_KEYS[message_type]}&to=91${phone}&message=${content}&format=1122334455667788991010___XXXXXXXXXX&sender=${process.env.KALEYRA_SENDER_ID}`
+``` 
+ 
 ## Deployment
 
 git clone the repo using following command 
