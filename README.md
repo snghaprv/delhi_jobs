@@ -55,7 +55,7 @@ Load Seed Data by running the following command:
 ```javascript
 node_modules/.bin/sequelize db:seed:all
 ```
-To run the run in development mode:
+To run the application in development mode: choose NODE_ENV as development
 ```javascript
 npm start
 ```
