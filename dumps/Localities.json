@@ -1,5 +1,5 @@
 [
-  { "id": 1, "label": "New Delhi" },
+  { "id": 1, "label": "East Delhi" },
   { "id": 2, "label": "North Delhi" },
   { "id": 3, "label": "North West Delhi" },
   { "id": 4, "label": "West Delhi" },
@@ -9,5 +9,5 @@
   { "id": 8, "label": "Central Delhi" },
   { "id": 9, "label": "North East Delhi" },
   { "id": 10, "label": "Shahdara" },
-  { "id": 11, "label": "East Delhi" }
+  { "id": 11, "label": "New Delhi" }
 ]

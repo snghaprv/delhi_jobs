@@ -111,6 +111,7 @@ const getJobsDataForJobSeeker = async function (job_ids) {
   if (job_ids.length == 0) {
     return [];
   }
+
   const inclusions = [
     {
       model: Recruiter,
@@ -118,10 +119,19 @@ const getJobsDataForJobSeeker = async function (job_ids) {
       as: "recruiter",
       include: {
         model: Company,
-        attributes: ["name", "address"],
+        attributes: ["name"],
         as: "company",
       },
+    },  {
+      model: Locality,
+      attributes: ["id", "label"],
+      as: "locality",
     },
+    {
+      model: City,
+      attributes: ["id", "label"],
+      as: "city",
+    }
   ];
 
   let jobs = await Job.findAll({
@@ -140,7 +150,17 @@ const getJobsDataForJobSeeker = async function (job_ids) {
   jobs = jobs.map((job) => {
     job.posted_on_label = moment(job.createdAt).format("[Posted on] DD[th] MMM YYYY")
     delete job.createdAt;
-    return job;
+    let addressArray = [];
+    if(job.locality && job.locality.label){
+      addressArray.push(job.locality.label)
+    }
+    if(job.city && job.city.label){
+      addressArray.push(job.city.label)
+    }
+    let address = addressArray.join(" ,")
+    delete job.locality;
+    delete job.city
+    return {...job,address};
   });
   return jobs;
 };
