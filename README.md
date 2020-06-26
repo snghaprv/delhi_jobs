@@ -60,7 +60,7 @@ To run the run in development mode:
 npm start
 ```
 
-To run the run in production mode:
+To run the application in production enviorment: Change NODE_ENV in .env to production and use forever or pm2 for running the application
 ```javascript
 forever start app.js
 ```
