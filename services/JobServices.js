@@ -93,7 +93,7 @@ const getOneJobDataForJobSeeker = async function (job_id) {
   job.locality = !!job.locality ? job.locality.label : null;
   job.qualification = !!job.qualification ? job.qualification.label : null;
   job.city = !!job.city ? job.city.label : null;
-  job.posted_on_label = moment(job.createdAt).format("[Posted on] DD[th] MMM YYYY")
+  job.posted_on_label = moment(job.createdAt).format("[Posted on] Do MMM YYYY")
   job.shift_start_time = moment(job.shift_start_time, "HH:mm").isValid()
     ? moment(job.shift_start_time, "HH:mm").format("hh:mm A")
     : null;
@@ -148,7 +148,7 @@ const getJobsDataForJobSeeker = async function (job_ids) {
   });
   jobs = jobs.map((job) => job.toJSON());
   jobs = jobs.map((job) => {
-    job.posted_on_label = moment(job.createdAt).format("[Posted on] DD[th] MMM YYYY")
+    job.posted_on_label = moment(job.createdAt).format("[Posted on] Do MMM YYYY")
     delete job.createdAt;
     let addressArray = [];
     if(job.locality && job.locality.label){
@@ -189,7 +189,7 @@ const getJobsPostedByRecruiter = async function (recruiter_id) {
   });
   jobs = jobs.map((job) => job.toJSON());
   jobs = jobs.map((job) => {
-  job.posted_on_label = moment(job.createdAt).format("[Posted on] DD[th] MMM YYYY");
+  job.posted_on_label = moment(job.createdAt).format("[Posted on] Do MMM YYYY");
   delete job.createdAt;
     return job;
   });
