@@ -157,7 +157,7 @@ const getJobsDataForJobSeeker = async function (job_ids) {
     if(job.city && job.city.label){
       addressArray.push(job.city.label)
     }
-    let address = addressArray.join(" ,")
+    let address = addressArray.join(", ")
     delete job.locality;
     delete job.city
     return {...job,address};
