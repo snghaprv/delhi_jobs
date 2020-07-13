@@ -1,157 +1,157 @@
 [
   {
-    "S No": 1,
-    "Label": "अकाउंटंट",
-    "Help Text": "Accountant"
+    "id": 1,
+    "label": "अकाउंटंट",
+    "helptext": "Accountant"
   },
   {
-    "S No": 2,
-    "Label": "कृषि क्षेत्र एवं पशु पालन",
-    "Help Text": "Agriculture /Farming/Dairy"
+    "id": 2,
+    "label": "कृषि क्षेत्र एवं पशु पालन",
+    "helptext": "Agriculture /Farming/Dairy"
   },
   {
-    "S No": 3,
-    "Label": "वास्तुकार / इंटिरीअर डिजाइनर",
-    "Help Text": "Architect / Interior Designer"
+    "id": 3,
+    "label": "वास्तुकार / इंटिरीअर डिजाइनर",
+    "helptext": "Architect / Interior Designer"
   },
   {
-    "S No": 4,
-    "Label": "बैक ऑफिस / डाटा एंट्री",
-    "Help Text": "Back Office / Data Entry"
+    "id": 4,
+    "label": "बैक ऑफिस / डाटा एंट्री",
+    "helptext": "Back Office / Data Entry"
   },
   {
-    "S No": 5,
-    "Label": "ब्यूटिशियन / स्पा / वेलनेस",
-    "Help Text": "Beautician / Spa / Wellness"
+    "id": 5,
+    "label": "ब्यूटिशियन / स्पा / वेलनेस",
+    "helptext": "Beautician / Spa / Wellness"
   },
   {
-    "S No": 6,
-    "Label": "केयर टेकर/ घरेलू सहायिका/ मेड़",
-    "Help Text": "Caretaker /Domestic helper/Maid"
+    "id": 6,
+    "label": "केयर टेकर/ घरेलू सहायिका/ मेड़",
+    "helptext": "Caretaker /Domestic helper/Maid"
   },
   {
-    "S No": 7,
-    "Label": "कन्स्ट्रक्शन",
-    "Help Text": "Construction"
+    "id": 7,
+    "label": "कन्स्ट्रक्शन",
+    "helptext": "Construction"
   },
   {
-    "S No": 8,
-    "Label": "कंटेंट लेखक",
-    "Help Text": "Content Writer"
+    "id": 8,
+    "label": "कंटेंट लेखक",
+    "helptext": "Content Writer"
   },
   {
-    "S No": 9,
-    "Label": "रसोइया / बावर्ची",
-    "Help Text": "Cook / Chef"
+    "id": 9,
+    "label": "रसोइया / बावर्ची",
+    "helptext": "Cook / Chef"
   },
   {
-    "S No": 10,
-    "Label": "ग्राहक सहायता / टेली कॉलर",
-    "Help Text": "Customer Support / Tele Caller"
+    "id": 10,
+    "label": "ग्राहक सहायता / टेली कॉलर",
+    "helptext": "Customer Support / Tele Caller"
   },
   {
-    "S No": 11,
-    "Label": "डिलीवरी",
-    "Help Text": "Delivery"
+    "id": 11,
+    "label": "डिलीवरी",
+    "helptext": "Delivery"
   },
   {
-    "S No": 12,
-    "Label": "चालक",
-    "Help Text": "Driver"
+    "id": 12,
+    "label": "चालक",
+    "helptext": "Driver"
   },
   {
-    "S No": 13,
-    "Label": "इवेंट मैनेजमेंट",
-    "Help Text": "Event Management"
+    "id": 13,
+    "label": "इवेंट मैनेजमेंट",
+    "helptext": "Event Management"
   },
   {
-    "S No": 14,
-    "Label": "फ़िट्नेस ट्रेनर",
-    "Help Text": "Fitness"
+    "id": 14,
+    "label": "फ़िट्नेस ट्रेनर",
+    "helptext": "Fitness"
   },
   {
-    "S No": 15,
-    "Label": "ग्राफिक / वेब डिजाइनर",
-    "Help Text": "Graphic / Web Designer"
+    "id": 15,
+    "label": "ग्राफिक / वेब डिजाइनर",
+    "helptext": "Graphic / Web Designer"
   },
   {
-    "S No": 16,
-    "Label": "होम / कॉर्प्रॉट सर्विसेज - पेंटर, प्लम्बर, इलेक्ट्रीशियन, माली आदि",
-    "Help Text": "Domestic/Corporate services - Painter, Plumber, Electrician, Gardener etc"
+    "id": 16,
+    "label": "होम / कॉर्प्रॉट सर्विसेज - पेंटर, प्लम्बर, इलेक्ट्रीशियन, माली आदि",
+    "helptext": "Domestic/Corporate services - Painter, Plumber, Electrician, Gardener etc"
   },
   {
-    "S No": 17,
-    "Label": "चपरासी",
-    "Help Text": "Housekeeping / Peon"
+    "id": 17,
+    "label": "चपरासी",
+    "helptext": "Housekeeping / Peon"
   },
   {
-    "S No": 18,
-    "Label": "एचआर / एडमिन",
-    "Help Text": "HR / Admin"
+    "id": 18,
+    "label": "एचआर / एडमिन",
+    "helptext": "HR / Admin"
   },
   {
-    "S No": 19,
-    "Label": "आईटी / हार्डवेयर / नेटवर्क इंजीनियर",
-    "Help Text": "IT / Hardware / Network Engineer"
+    "id": 19,
+    "label": "आईटी / हार्डवेयर / नेटवर्क इंजीनियर",
+    "helptext": "IT / Hardware / Network Engineer"
   },
   {
-    "S No": 20,
-    "Label": "लैब तकनीशियन / फार्मासिस्ट",
-    "Help Text": "Lab Technician / Pharmacist"
+    "id": 20,
+    "label": "लैब तकनीशियन / फार्मासिस्ट",
+    "helptext": "Lab Technician / Pharmacist"
   },
   {
-    "S No": 21,
-    "Label": "कानूनी",
-    "Help Text": "Legal"
+    "id": 21,
+    "label": "कानूनी",
+    "helptext": "Legal"
   },
   {
-    "S No": 22,
-    "Label": "विनिर्माण",
-    "Help Text": "Manufacturing"
+    "id": 22,
+    "label": "विनिर्माण",
+    "helptext": "Manufacturing"
   },
   {
-    "S No": 23,
-    "Label": "नर्स / वार्ड बॉय",
-    "Help Text": "Nurse / Ward Boy"
+    "id": 23,
+    "label": "नर्स / वार्ड बॉय",
+    "helptext": "Nurse / Ward Boy"
   },
   {
-    "S No": 24,
-    "Label": "रिसेप्शनिस्ट",
-    "Help Text": "Receptionist"
+    "id": 24,
+    "label": "रिसेप्शनिस्ट",
+    "helptext": "Receptionist"
   },
   {
-    "S No": 25,
-    "Label": "बिक्री /मार्केटिंग/ व्यवसाय विकास",
-    "Help Text": "Sales /Marketing/ Business Development"
+    "id": 25,
+    "label": "बिक्री /मार्केटिंग/ व्यवसाय विकास",
+    "helptext": "Sales /Marketing/ Business Development"
   },
   {
-    "S No": 26,
-    "Label": "सैनिटेशन / सफाईकर्मी",
-    "Help Text": "Sanitation /Cleaning"
+    "id": 26,
+    "label": "सैनिटेशन / सफाईकर्मी",
+    "helptext": "Sanitation /Cleaning"
   },
   {
-    "S No": 27,
-    "Label": "सुरक्षा कर्मी",
-    "Help Text": "Security Guard"
+    "id": 27,
+    "label": "सुरक्षा कर्मी",
+    "helptext": "Security Guard"
   },
   {
-    "S No": 28,
-    "Label": "दर्जी / डिजाइनर /",
-    "Help Text": "Tailor / Designer /"
+    "id": 28,
+    "label": "दर्जी / डिजाइनर /",
+    "helptext": "Tailor / Designer /"
   },
   {
-    "S No": 29,
-    "Label": "शिक्षा",
-    "Help Text": "Teaching"
+    "id": 29,
+    "label": "शिक्षा",
+    "helptext": "Teaching"
   },
   {
-    "S No": 30,
-    "Label": "वेटर / स्टूवर्ड",
-    "Help Text": "Waiter / Steward"
+    "id": 30,
+    "label": "वेटर / स्टूवर्ड",
+    "helptext": "Waiter / Steward"
   },
   {
-    "S No": 31,
-    "Label": "गोदाम / रसद",
-    "Help Text": "Warehouse / Logistics Management"
+    "id": 31,
+    "label": "गोदाम / रसद",
+    "helptext": "Warehouse / Logistics Management"
   }
 ]
