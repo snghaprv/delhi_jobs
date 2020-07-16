@@ -22,8 +22,7 @@ async function getAndSendOTP(keyObject, phone){
         throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
     }
     if(!otp){
-        otp=123456;//TODO: Need to activate code for OTP.
-        //otp = generator.GenerateOTP();
+        otp = generator.GenerateOTP();
         
         await redis.set(key, otp, "EX", ttl);
         await redis.set(attempts_key,1,'EX',ttl);
@@ -34,12 +33,12 @@ async function getAndSendOTP(keyObject, phone){
     }
     let content; 
     if(user_type== 'RECRUITER'){
-        content = encodeURIComponent (`<#> ${otp} is your verification code for Delhi Job Board-Recruiter\n \n \n ${process.env.RECRUITER_APP_HASH}`)
+        content = encodeURIComponent (`Dear Employer \n\nOTP for registration to RojgarBazaar website is ${otp}`)
     } else if(user_type== 'JOBSEEKER'){
-        content = encodeURIComponent (`<#> ${otp} is your verification code for Delhi Job Board-JOBSEEKER.\n \n \n ${process.env.JOB_SEEKER_APP_HASH}`)
+        content = encodeURIComponent (`Dear Job Seeker \n\nOTP for registration to RojgarBazaar website is ${otp}`)
     }
 
-   // await SMS.sendMessage(content, phone, 'TRANSACTIONAL');
+    await SMS.sendMessage(content, phone, 'TRANSACTIONAL');
     return {otp,resend};
 }
 

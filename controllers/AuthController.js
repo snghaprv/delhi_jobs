@@ -24,7 +24,7 @@ const RECRUITER_JWT_TOKEN_EXPIRY_TIME = 365 * 24 * 60 * 60;
 const sendOTPToJobSeeker = async function (req, res) {
   try {
     const { phone } = req.body;
-    const regex = /^[789]\d{9}$/;
+    const regex = /^[6789]\d{9}$/;
     if (!phone || !regex.test(phone)) {
       return res.sendErrorResponse(PHONE_NOT_AVAILABLE);
     }
@@ -88,7 +88,7 @@ const verifyOTPForJobSeeker = async function (req, res) {
 const sendOTPToRecruiter = async function (req, res) {
   try {
     const { phone } = req.body;
-    const regex = /^[789]\d{9}$/;
+    const regex = /^[6789]\d{9}$/;
     if (!phone || !regex.test(phone)) {
       return res.sendErrorResponse(PHONE_NOT_AVAILABLE);
     }
