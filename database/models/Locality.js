@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         label : DataTypes.STRING,
         latitude : DataTypes.FLOAT,
         longitude : DataTypes.FLOAT,
+        minimum_wage: DataTypes.INTEGER
     },{
         timestamps:false
     });

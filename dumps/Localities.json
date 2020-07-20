@@ -1,18 +1,17 @@
 [
-  { "id": 1, "label": "East Delhi" },
-  { "id": 2, "label": "North Delhi" },
-  { "id": 3, "label": "North West Delhi" },
-  { "id": 4, "label": "West Delhi" },
-  { "id": 5, "label": "South West Delhi" },
-  { "id": 6, "label": "South Delhi" },
-  { "id": 7, "label": "South East Delhi" },
-  { "id": 8, "label": "Central Delhi" },
-  { "id": 9, "label": "North East Delhi" },
-  { "id": 10, "label": "Shahdara" },
-  { "id": 11, "label": "New Delhi" },
-  { "id": 12, "label": "Noida" },
-  { "id": 13, "label": "Ghaziabad" },
-  { "id": 14, "label": "Gurgaon" },
-  { "id": 15, "label": "Faridabad" }
-
+  { "id": 1, "label": "East Delhi","minimum_wage":14806 },
+  { "id": 2, "label": "North East Delhi","minimum_wage":14806},
+  { "id": 3, "label": "North West Delhi","minimum_wage":14806 },
+  { "id": 4, "label": "West Delhi","minimum_wage":14806 },
+  { "id": 5, "label": "South West Delhi","minimum_wage":14806 },
+  { "id": 6, "label": "South Delhi","minimum_wage":14806 },
+  { "id": 7, "label": "South East Delhi","minimum_wage":14806 },
+  { "id": 8, "label": "Central Delhi","minimum_wage":14806 },
+  { "id": 9, "label": "North East Delhi","minimum_wage":14806 },
+  { "id": 10, "label": "Shahdara","minimum_wage":14806 },
+  { "id": 11, "label": "New Delhi","minimum_wage":14806 },
+  { "id": 12, "label": "Noida","minimum_wage":5750 },
+  { "id": 13, "label": "Ghaziabad","minimum_wage":5750 },
+  { "id": 14, "label": "Gurgaon","minimum_wage":9024 },
+  { "id": 15, "label": "Faridabad","minimum_wage":9024 }
 ]

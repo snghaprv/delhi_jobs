@@ -13,7 +13,7 @@ const {
 
 const populateDatabase = async function () {
   await Locality.bulkCreate(localities, {
-    updateOnDuplicate: ["label"],
+    updateOnDuplicate: ["label","minimum_wage"],
   });
   await Category.bulkCreate(categories, {
     updateOnDuplicate: ["label", "helptext"],
