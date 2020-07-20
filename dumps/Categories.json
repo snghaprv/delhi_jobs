@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "label": "अकाउंटंट",
+    "label": "अकाउंटेंट",
     "helptext": "Accountant"
   },
   {
@@ -11,7 +11,7 @@
   },
   {
     "id": 3,
-    "label": "वास्तुकार / इंटिरीअर डिजाइनर",
+    "label": "वास्तुकार / इंटीरियर डिजाइनर",
     "helptext": "Architect / Interior Designer"
   },
   {
@@ -26,7 +26,7 @@
   },
   {
     "id": 6,
-    "label": "केयर टेकर/ घरेलू सहायिका/ मेड़",
+    "label": "केयर टेकर/ घरेलू सहायिका/ मेड",
     "helptext": "Caretaker /Domestic helper/Maid"
   },
   {

@@ -9,5 +9,10 @@
   { "id": 8, "label": "Central Delhi" },
   { "id": 9, "label": "North East Delhi" },
   { "id": 10, "label": "Shahdara" },
-  { "id": 11, "label": "New Delhi" }
+  { "id": 11, "label": "New Delhi" },
+  { "id": 12, "label": "Noida" },
+  { "id": 13, "label": "Ghaziabad" },
+  { "id": 14, "label": "Gurgaon" },
+  { "id": 15, "label": "Faridabad" }
+
 ]

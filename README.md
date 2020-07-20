@@ -53,7 +53,7 @@ node ./node_modules/sequelize-auto-migrations/bin/runmigration
 Load Seed Data by running the following command:
 
 ```javascript
-node_modules/.bin/sequelize db:seed:all
+node scripts/seeder.js 
 ```
 To run the application in development mode: choose NODE_ENV as development
 ```javascript
