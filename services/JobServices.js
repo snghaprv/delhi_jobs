@@ -222,7 +222,7 @@ const getJobPostedByRecruiter = async function (job_id) {
     },
     {
       model: Locality,
-      attributes: ["id", "label"],
+      attributes: ["id", "label","minimum_wage"],
       as: "locality",
     },
     {
