@@ -25,7 +25,7 @@ const getAppliedJobs = async function (jobseeker_id) {
         [Op.or] : [{[Op.in]: [R_LAST_ACTION.R_CALLED]}, {[Op.is]: null}],
       }
     },
-    attributes: ["job_id", "js_last_action", "r_last_action", "updatedAt"],
+    attributes: ["job_id", "js_last_action", "r_last_action", "updatedAt","createdAt"],
     order: [["updatedAt", "DESC"]],
   });
   applications = applications.map((application) => application.toJSON());
@@ -45,7 +45,7 @@ const getAppliedJobs = async function (jobseeker_id) {
       status =JS_LAST_ACTION.JS_CALLED 
     } else {
       last_action_label = `Recruiter contacted you ${moment(
-        application.updatedAt
+        application.createdAt
       ).fromNow(true)} ago`;
       status = R_LAST_ACTION.R_CALLED
     }
