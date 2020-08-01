@@ -25,7 +25,7 @@ const getAppliedJobs = async function (jobseeker_id) {
         [Op.or] : [{[Op.in]: [R_LAST_ACTION.R_CALLED]}, {[Op.is]: null}],
       }
     },
-    attributes: ["job_id", "js_last_action", "r_last_action", "updatedAt","createdAt"],
+    attributes: ["job_id", "js_last_action", "r_last_action", "updatedAt"],
     order: [["updatedAt", "DESC"]],
   });
   applications = applications.map((application) => application.toJSON());
@@ -34,18 +34,18 @@ const getAppliedJobs = async function (jobseeker_id) {
     let status; // last_action_label color is determined by this. 
     if(!application.r_last_action ){
       if([JS_LAST_ACTION.JS_CALLED,JS_LAST_ACTION.JS_WHATSAPP].includes(application.js_last_action)){
-        last_action_label = `You contacted ${moment(application.createdAt).fromNow(
+        last_action_label = `You contacted ${moment(application.updatedAt).fromNow(
           true
         )} ago`;
       }else {
-        last_action_label = `You applied ${moment(application.createdAt).fromNow(
+        last_action_label = `You applied ${moment(application.updatedAt).fromNow(
           true
         )} ago`;
       }       
       status =JS_LAST_ACTION.JS_CALLED 
     } else {
       last_action_label = `Recruiter contacted you ${moment(
-        application.createdAt
+        application.updatedAt
       ).fromNow(true)} ago`;
       status = R_LAST_ACTION.R_CALLED
     }
