@@ -35,7 +35,7 @@ const createJob = async function (job_data, recruiter_id) {
   return job.id;
 };
 
-const getOneJobDataForJobSeeker = async function (job_id) {
+const getOneJobDataForJobSeeker = async function (job_id,jobseeker_id) {
   const inclusions = [
     {
       model: Category,
@@ -68,7 +68,11 @@ const getOneJobDataForJobSeeker = async function (job_id) {
       },
     },
     {
-      model:Job_Application
+      model:Job_Application,
+      where: {
+        js_id:jobseeker_id
+      },
+      required:false
     }
   ];
   const exclusions = [
