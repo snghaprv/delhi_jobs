@@ -393,7 +393,7 @@
                 },
                 "status": {
                     "field": "status",
-                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED', 'R_REJECTED', 'JS_WHATSAPP')"
+                    "seqType": "Sequelize.ENUM('JS_VIEWED', 'JS_CALLED', 'R_CALLED', 'R_REJECTED', 'JS_WHATSAPP', 'JS_APPLIED')"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -435,7 +435,7 @@
             "schema": {
                 "js_last_action": {
                     "field": "js_last_action",
-                    "seqType": "Sequelize.ENUM('JS_CALLED', 'JS_WHATSAPP')"
+                    "seqType": "Sequelize.ENUM('JS_CALLED', 'JS_WHATSAPP', 'JS_APPLIED')"
                 },
                 "r_last_action": {
                     "field": "r_last_action",
@@ -615,6 +615,10 @@
                     "field": "email",
                     "seqType": "Sequelize.STRING"
                 },
+                "is_call_allowed": {
+                    "field": "is_call_allowed",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -695,5 +699,5 @@
             "indexes": []
         }
     },
-    "revision": 16
+    "revision": 17
 }

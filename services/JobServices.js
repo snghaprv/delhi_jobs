@@ -58,7 +58,7 @@ const getOneJobDataForJobSeeker = async function (job_id) {
     },
     {
       model: Recruiter,
-      attributes: ["phone","whatsapp_number"],
+      attributes: ["phone","whatsapp_number","is_call_allowed"],
       as: "recruiter",
       include: {
         model: Company,
@@ -102,6 +102,7 @@ const getOneJobDataForJobSeeker = async function (job_id) {
     : null;
     let {whatsapp_number} = job.recruiter
   job.whatsapp_link = !!whatsapp_number ? `https://api.whatsapp.com/send?phone=91${whatsapp_number}` : null;
+  job.recruiter.is_call_allowed = !!job.recruiter.is_call_allowed
   delete job.recruiter.whatsapp_number;  
   delete job.createdAt;
   return job;

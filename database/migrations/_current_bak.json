@@ -549,6 +549,10 @@
                     "field": "longitude",
                     "seqType": "Sequelize.FLOAT"
                 },
+                "minimum_wage": {
+                    "field": "minimum_wage",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "city_id": {
                     "allowNull": true,
                     "references": {
@@ -691,5 +695,5 @@
             "indexes": []
         }
     },
-    "revision": 15
+    "revision": 16
 }

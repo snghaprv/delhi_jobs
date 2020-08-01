@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    is_call_allowed: DataTypes.BOOLEAN,
   });
   Recruiter.associate = function (models) {
     models.Recruiter.belongsTo(models.Company, {
