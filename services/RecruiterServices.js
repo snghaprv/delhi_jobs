@@ -4,8 +4,8 @@ const { Recruiter, Company,Job } = require("../database/models");
 
 const editProfile = async function (recruiter_id, fields) {
   const { company } = fields;
-  const { name, whatsapp_number, email } = fields;
-  const recruiter_fields = { name, whatsapp_number, email };
+  const { name, whatsapp_number, email,is_call_allowed } = fields;
+  const recruiter_fields = { name, whatsapp_number, email,is_call_allowed };
   const company_fields = { name: company.name, address: company.address };
   const recruiter = await Recruiter.findOne({ where: { id: recruiter_id } });
   await recruiter.update(recruiter_fields);
@@ -19,13 +19,14 @@ const editProfile = async function (recruiter_id, fields) {
 const getProfile = async function (recruiter_id) {
   const data = await Recruiter.findOne({
     where: { id: recruiter_id },
-    attributes: ["name", "whatsapp_number", "email", "phone"],
+    attributes: ["name", "whatsapp_number", "email", "phone","is_call_allowed"],
     include: {
       model: Company,
       attributes: ["name", "address"],
       as : "company"
     },
   });
+
   return data.toJSON()
 };
 const getLandingPage = async function(recruiter_id){

@@ -51,7 +51,8 @@ const getAllJobs = async function (req, res) {
 const getOneJob = async function (req, res) {
   try {
     const { job_id } = req.params;
-    const job_data = await JobServices.getOneJobDataForJobSeeker(job_id);
+    const jobseeker_id = req.token.id;
+    const job_data = await JobServices.getOneJobDataForJobSeeker(job_id,jobseeker_id);
     return res.sendSuccessResponse({ job: job_data });
   } catch (error) {
     console.error(error);

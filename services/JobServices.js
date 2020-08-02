@@ -8,6 +8,7 @@ const {
   Recruiter,
   Company,
   sequelize,
+  Job_Application
 } = require("../database/models");
 const ApplicationServices = require("./ApplicationServices");
 const { RecruiterApplicationServices } = ApplicationServices;
@@ -34,7 +35,7 @@ const createJob = async function (job_data, recruiter_id) {
   return job.id;
 };
 
-const getOneJobDataForJobSeeker = async function (job_id) {
+const getOneJobDataForJobSeeker = async function (job_id,jobseeker_id) {
   const inclusions = [
     {
       model: Category,
@@ -58,7 +59,7 @@ const getOneJobDataForJobSeeker = async function (job_id) {
     },
     {
       model: Recruiter,
-      attributes: ["phone","whatsapp_number"],
+      attributes: ["phone","whatsapp_number","is_call_allowed"],
       as: "recruiter",
       include: {
         model: Company,
@@ -66,6 +67,13 @@ const getOneJobDataForJobSeeker = async function (job_id) {
         as: "company",
       },
     },
+    {
+      model:Job_Application,
+      where: {
+        js_id:jobseeker_id
+      },
+      required:false
+    }
   ];
   const exclusions = [
     "expiry_date",
@@ -102,8 +110,11 @@ const getOneJobDataForJobSeeker = async function (job_id) {
     : null;
     let {whatsapp_number} = job.recruiter
   job.whatsapp_link = !!whatsapp_number ? `https://api.whatsapp.com/send?phone=91${whatsapp_number}` : null;
+  job.recruiter.is_call_allowed = !!job.recruiter.is_call_allowed;
+  job.is_applied = job.Job_Applications.length >0;
   delete job.recruiter.whatsapp_number;  
   delete job.createdAt;
+  delete job.Job_Applications;
   return job;
 };
 
