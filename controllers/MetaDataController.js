@@ -1,5 +1,5 @@
 
-const { MetaDataServices } = require("../services");
+const { MetaDataServices,JobServices } = require("../services");
 
 
 const getJobSeekerRegistrationMetaData = async function (req, res) {
@@ -21,7 +21,17 @@ const getJobPostFormMetaData = async function (req, res) {
     return res.sendErrorResponse();
   }
 };
+const getCountForTicker=async (req,res)=>{
+  try {
+    const employer_vacancies_seekersCount= await JobServices.getEmployeeVacanciesJobseekersCount();
+    return res.sendSuccessResponse({employer_vacancies_seekersCount});
+  } catch (error) {
+    console.log(error);
+    return res.sendErrorResponse();
+  }
+}
 module.exports = {
   getJobSeekerRegistrationMetaData,
-  getJobPostFormMetaData
+  getJobPostFormMetaData,
+  getCountForTicker
 };

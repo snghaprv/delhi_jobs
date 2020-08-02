@@ -256,8 +256,7 @@ class BaseRecommender {
                     ${whereString} 
                     ORDER BY score DESC,  j.id DESC
              `;
-    const job_count_query = `SELECT 
-                                  COUNT(*) AS job_count
+    const job_count_query = `SELECT Sum(no_of_openings)  AS job_count
                                 ${baseQuerySource}
                                 ${whereString} 
                                 `;

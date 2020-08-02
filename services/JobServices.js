@@ -133,7 +133,6 @@ const getJobsDataForJobSeeker = async function (job_ids) {
       as: "city",
     }
   ];
-
   let jobs = await Job.findAll({
     where: { id: job_ids },
     include: inclusions,
@@ -284,6 +283,26 @@ const editJob = async function (job_data, job_id) {
   return job_id;
 };
 
+/**
+ * /**
+ * Returns  seekers cont ,employers count,vacancies count
+ * 
+ *
+ */
+const getEmployeeVacanciesJobseekersCount= async()=>{
+  const query = `SELECT Count(*) AS seekers, 
+  (SELECT Count(DISTINCT recruiter_id) 
+   FROM   jobs) AS employers, 
+  (SELECT Sum(no_of_openings) 
+   FROM   jobs) AS vacancies 
+   FROM   jobseekers`;
+  const [result] = await sequelize.query(query);
+  return result;
+}
+
+
+
+
 module.exports = {
   createJob,
   getOneJobDataForJobSeeker,
@@ -291,4 +310,5 @@ module.exports = {
   getJobsPostedByRecruiter,
   getJobPostedByRecruiter,
   editJob,
+  getEmployeeVacanciesJobseekersCount
 };

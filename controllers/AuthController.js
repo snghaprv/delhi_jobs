@@ -29,6 +29,7 @@ const sendOTPToJobSeeker = async function (req, res) {
       return res.sendErrorResponse(PHONE_NOT_AVAILABLE);
     }
     const keyObject = getJobSeekerKeys(null).getLoginKeys(phone);
+    console.log(keyObject)
     await getAndSendOTP(keyObject, phone);
     return res.sendSuccessResponse({ message: OTP_SENT_SUCCESSFUL });
   } catch (error) {
