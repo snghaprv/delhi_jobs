@@ -1,157 +1,161 @@
-[
-  {
-    "id": 1,
-    "label": "अकाउंटेंट",
-    "helptext": "Accountant"
-  },
-  {
-    "id": 2,
-    "label": "कृषि क्षेत्र एवं पशु पालन",
-    "helptext": "Agriculture /Farming/Dairy"
-  },
-  {
-    "id": 3,
-    "label": "वास्तुकार / इंटीरियर डिजाइनर",
-    "helptext": "Architect / Interior Designer"
-  },
-  {
-    "id": 4,
-    "label": "बैक ऑफिस / डाटा एंट्री",
-    "helptext": "Back Office / Data Entry"
-  },
-  {
-    "id": 5,
-    "label": "ब्यूटिशियन / स्पा / वेलनेस",
-    "helptext": "Beautician / Spa / Wellness"
-  },
-  {
-    "id": 6,
-    "label": "केयर टेकर/ घरेलू सहायिका/ मेड",
-    "helptext": "Caretaker /Domestic helper/Maid"
-  },
-  {
-    "id": 7,
-    "label": "कन्स्ट्रक्शन",
-    "helptext": "Construction"
-  },
-  {
-    "id": 8,
-    "label": "कंटेंट लेखक",
-    "helptext": "Content Writer"
-  },
-  {
-    "id": 9,
-    "label": "रसोइया / बावर्ची",
-    "helptext": "Cook / Chef"
-  },
-  {
-    "id": 10,
-    "label": "ग्राहक सहायता / टेली कॉलर",
-    "helptext": "Customer Support / Tele Caller"
-  },
-  {
-    "id": 11,
-    "label": "डिलीवरी",
-    "helptext": "Delivery"
-  },
-  {
-    "id": 12,
-    "label": "चालक",
-    "helptext": "Driver"
-  },
-  {
-    "id": 13,
-    "label": "इवेंट मैनेजमेंट",
-    "helptext": "Event Management"
-  },
-  {
-    "id": 14,
-    "label": "फ़िट्नेस ट्रेनर",
-    "helptext": "Fitness"
-  },
-  {
-    "id": 15,
-    "label": "ग्राफिक / वेब डिजाइनर",
-    "helptext": "Graphic / Web Designer"
-  },
-  {
-    "id": 16,
-    "label": "होम / कॉर्प्रॉट सर्विसेज - पेंटर, प्लम्बर, इलेक्ट्रीशियन, माली आदि",
-    "helptext": "Domestic/Corporate services - Painter, Plumber, Electrician, Gardener etc"
-  },
-  {
-    "id": 17,
-    "label": "चपरासी",
-    "helptext": "Housekeeping / Peon"
-  },
-  {
-    "id": 18,
-    "label": "एचआर / एडमिन",
-    "helptext": "HR / Admin"
-  },
-  {
-    "id": 19,
-    "label": "आईटी / हार्डवेयर / नेटवर्क इंजीनियर",
-    "helptext": "IT / Hardware / Network Engineer"
-  },
-  {
-    "id": 20,
-    "label": "लैब तकनीशियन / फार्मासिस्ट",
-    "helptext": "Lab Technician / Pharmacist"
-  },
-  {
-    "id": 21,
-    "label": "कानूनी",
-    "helptext": "Legal"
-  },
-  {
-    "id": 22,
-    "label": "विनिर्माण",
-    "helptext": "Manufacturing"
-  },
-  {
-    "id": 23,
-    "label": "नर्स / वार्ड बॉय",
-    "helptext": "Nurse / Ward Boy"
-  },
-  {
-    "id": 24,
-    "label": "रिसेप्शनिस्ट",
-    "helptext": "Receptionist"
-  },
-  {
-    "id": 25,
-    "label": "बिक्री /मार्केटिंग/ व्यवसाय विकास",
-    "helptext": "Sales /Marketing/ Business Development"
-  },
-  {
-    "id": 26,
-    "label": "सैनिटेशन / सफाईकर्मी",
-    "helptext": "Sanitation /Cleaning"
-  },
-  {
-    "id": 27,
-    "label": "सुरक्षा कर्मी",
-    "helptext": "Security Guard"
-  },
-  {
-    "id": 28,
-    "label": "दर्जी / डिजाइनर /",
-    "helptext": "Tailor / Designer /"
-  },
-  {
-    "id": 29,
-    "label": "शिक्षा",
-    "helptext": "Teaching"
-  },
-  {
-    "id": 30,
-    "label": "वेटर / स्टूवर्ड",
-    "helptext": "Waiter / Steward"
-  },
-  {
-    "id": 31,
-    "label": "गोदाम / रसद",
-    "helptext": "Warehouse / Logistics Management"
-  }
+[{
+        "id": 1,
+        "label": "अकाउंटेंट",
+        "helptext": "Accountant"
+    },
+    {
+        "id": 2,
+        "label": "कृषि क्षेत्र एवं पशु पालन",
+        "helptext": "Agriculture /Farming/Dairy"
+    },
+    {
+        "id": 3,
+        "label": "वास्तुकार / इंटीरियर डिजाइनर",
+        "helptext": "Architect / Interior Designer"
+    },
+    {
+        "id": 4,
+        "label": "बैक ऑफिस / डाटा एंट्री",
+        "helptext": "Back Office / Data Entry"
+    },
+    {
+        "id": 5,
+        "label": "ब्यूटिशियन / स्पा / वेलनेस",
+        "helptext": "Beautician / Spa / Wellness"
+    },
+    {
+        "id": 6,
+        "label": "केयर टेकर/ घरेलू सहायिका/ मेड",
+        "helptext": "Caretaker /Domestic helper/Maid"
+    },
+    {
+        "id": 7,
+        "label": "कन्स्ट्रक्शन",
+        "helptext": "Construction"
+    },
+    {
+        "id": 8,
+        "label": "कंटेंट लेखक",
+        "helptext": "Content Writer"
+    },
+    {
+        "id": 9,
+        "label": "रसोइया / बावर्ची",
+        "helptext": "Cook / Chef"
+    },
+    {
+        "id": 10,
+        "label": "ग्राहक सहायता / टेली कॉलर",
+        "helptext": "Customer Support / Tele Caller"
+    },
+    {
+        "id": 11,
+        "label": "डिलीवरी",
+        "helptext": "Delivery"
+    },
+    {
+        "id": 12,
+        "label": "चालक",
+        "helptext": "Driver"
+    },
+    {
+        "id": 13,
+        "label": "इवेंट मैनेजमेंट",
+        "helptext": "Event Management"
+    },
+    {
+        "id": 14,
+        "label": "फ़िट्नेस ट्रेनर",
+        "helptext": "Fitness"
+    },
+    {
+        "id": 15,
+        "label": "ग्राफिक / वेब डिजाइनर",
+        "helptext": "Graphic / Web Designer"
+    },
+    {
+        "id": 16,
+        "label": "होम / कॉर्प्रॉट सर्विसेज - पेंटर, प्लम्बर, इलेक्ट्रीशियन, माली आदि",
+        "helptext": "Domestic/Corporate services - Painter, Plumber, Electrician, Gardener etc"
+    },
+    {
+        "id": 17,
+        "label": "चपरासी",
+        "helptext": "Housekeeping / Peon"
+    },
+    {
+        "id": 18,
+        "label": "एचआर / एडमिन",
+        "helptext": "HR / Admin"
+    },
+    {
+        "id": 19,
+        "label": "आईटी / हार्डवेयर / नेटवर्क इंजीनियर",
+        "helptext": "IT / Hardware / Network Engineer"
+    },
+    {
+        "id": 20,
+        "label": "लैब तकनीशियन / फार्मासिस्ट",
+        "helptext": "Lab Technician / Pharmacist"
+    },
+    {
+        "id": 21,
+        "label": "कानूनी",
+        "helptext": "Legal"
+    },
+    {
+        "id": 22,
+        "label": "विनिर्माण",
+        "helptext": "Manufacturing"
+    },
+    {
+        "id": 23,
+        "label": "नर्स / वार्ड बॉय",
+        "helptext": "Nurse / Ward Boy"
+    },
+    {
+        "id": 24,
+        "label": "रिसेप्शनिस्ट",
+        "helptext": "Receptionist"
+    },
+    {
+        "id": 25,
+        "label": "बिक्री /मार्केटिंग/ व्यवसाय विकास",
+        "helptext": "Sales /Marketing/ Business Development"
+    },
+    {
+        "id": 26,
+        "label": "सैनिटेशन / सफाईकर्मी",
+        "helptext": "Sanitation /Cleaning"
+    },
+    {
+        "id": 27,
+        "label": "सुरक्षा कर्मी",
+        "helptext": "Security Guard"
+    },
+    {
+        "id": 28,
+        "label": "दर्जी / डिजाइनर /",
+        "helptext": "Tailor / Designer /"
+    },
+    {
+        "id": 29,
+        "label": "शिक्षा",
+        "helptext": "Teaching"
+    },
+    {
+        "id": 30,
+        "label": "वेटर / स्टूवर्ड",
+        "helptext": "Waiter / Steward"
+    },
+    {
+        "id": 31,
+        "label": "गोदाम / रसद",
+        "helptext": "Warehouse / Logistics Management"
+    },
+    {
+        "id": 32,
+        "label": "प्रोफ़ेसनल आर्टिस्ट/फ़ोटोग्राफ़र/डान्सर आदि",
+        "helptext": "Professional Artist/photographer/dancer etc"
+    }
 ]
