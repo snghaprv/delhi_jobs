@@ -96,6 +96,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     expiry_date: {
       type: DataTypes.DATEONLY
+    },
+    term_and_condition:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
     }
   });
 

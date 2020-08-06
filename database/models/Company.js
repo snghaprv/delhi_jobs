@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     },
 
     name: { type: DataTypes.STRING },
-    address : { type: DataTypes.STRING }
+    address : { type: DataTypes.STRING },
+    registration_number: { type: DataTypes.STRING },
   });
   return Company;
 };

@@ -1,6 +1,6 @@
 var cluster = require('cluster');
 
-if (cluster.isMaster) {
+if (false) {
     // Leaving one core for the frontend UI app
     var cpuCount = require('os').cpus().length - 1;
 

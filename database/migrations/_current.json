@@ -89,6 +89,10 @@
                     "field": "address",
                     "seqType": "Sequelize.STRING"
                 },
+                "registration_number": {
+                    "field": "registration_number",
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -208,6 +212,11 @@
                 "expiry_date": {
                     "field": "expiry_date",
                     "seqType": "Sequelize.DATEONLY"
+                },
+                "term_and_condition": {
+                    "allowNull": false,
+                    "field": "term_and_condition",
+                    "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -405,17 +414,6 @@
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 },
-                "js_id": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "JobSeekers",
-                        "key": "id"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "js_id",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "job_id": {
                     "allowNull": true,
                     "references": {
@@ -425,6 +423,17 @@
                     "onDelete": "SET NULL",
                     "onUpdate": "CASCADE",
                     "field": "job_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "js_id": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "JobSeekers",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "js_id",
                     "seqType": "Sequelize.INTEGER"
                 }
             },
@@ -699,5 +708,5 @@
             "indexes": []
         }
     },
-    "revision": 17
+    "revision": 19
 }
