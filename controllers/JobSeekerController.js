@@ -31,17 +31,27 @@ const editProfile = async function (req, res) {
     return res.sendErrorResponse();
   }
 };
+const getPagination = (page, size) => {
+  const limit = size ? +size : 3;
+  const offset = page ? page * limit : 0;
+
+  return { limit, offset };
+};
 const getAllJobs = async function (req, res) {
   try {
     const jobseeker_id = req.token.id;
-    let {filters} = req.body;
+    let {filters,page,size} = req.body;
     if(!filters){
       filters = await baseFilters();
     } 
     const recommender =await new BaseRecommender(jobseeker_id,filters);
     
     const {job_ids,job_count} = await recommender.getRecommendedJobs();
-    const job_data = await JobServices.getJobsDataForJobSeeker(job_ids);
+  
+    const { limit, offset } = getPagination(page, size);
+    console.log(limit,offset);
+    // return
+    const job_data = await JobServices.getJobsDataForJobSeeker(job_ids,limit, offset);
     return res.sendSuccessResponse({ jobs: job_data,filters,job_count });
   } catch (error) {
     console.error(error);

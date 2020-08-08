@@ -118,7 +118,7 @@ const getOneJobDataForJobSeeker = async function (job_id,jobseeker_id) {
   return job;
 };
 
-const getJobsDataForJobSeeker = async function (job_ids) {
+const getJobsDataForJobSeeker = async function (job_ids,limit,offset) {
   if (job_ids.length == 0) {
     return [];
   }
@@ -145,7 +145,8 @@ const getJobsDataForJobSeeker = async function (job_ids) {
     }
   ];
   let jobs = await Job.findAll({
-    where: { id: job_ids },
+    where: { id: job_ids},
+   limit, offset ,
     include: inclusions,
     attributes: [
       "title",
@@ -156,6 +157,7 @@ const getJobsDataForJobSeeker = async function (job_ids) {
     ],
     order: [[sequelize.fn("FIELD", sequelize.col("Job.id"), job_ids)]],
   });
+  
   jobs = jobs.map((job) => job.toJSON());
   jobs = jobs.map((job) => {
     job.posted_on_label = moment(job.createdAt).format("[Posted on] Do MMM YYYY")

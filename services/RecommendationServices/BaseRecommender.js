@@ -8,7 +8,7 @@ const {
 const moment = require("moment");
 
 class BaseRecommender {
-  constructor(jobseeker_id, filters = []) {
+  constructor(jobseeker_id, filters = [],page,size) {
     return new Promise(async (resolve, reject) => {
       try {
         this.jobseeker_id = jobseeker_id;
