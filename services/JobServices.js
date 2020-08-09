@@ -271,6 +271,7 @@ const getJobPostedByRecruiter = async function (job_id) {
       "working_days",
       "job_type",
       "other_city",
+      "term_and_condition"
     ],
   });
   job = job.toJSON();
