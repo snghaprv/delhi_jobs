@@ -306,10 +306,10 @@ const editJob = async function (job_data, job_id) {
 const getEmployeeVacanciesJobseekersCount= async()=>{
   const query = `SELECT Count(*) AS seekers, 
   (SELECT Count(DISTINCT recruiter_id) 
-   FROM   jobs) AS employers, 
+   FROM   Jobs) AS employers, 
   (SELECT Sum(no_of_openings) 
-   FROM   jobs) AS vacancies 
-   FROM   jobseekers`;
+   FROM   Jobs) AS vacancies 
+   FROM   JobSeekers`;
   const [result] = await sequelize.query(query);
   return result;
 }
