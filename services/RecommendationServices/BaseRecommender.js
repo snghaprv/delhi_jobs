@@ -149,13 +149,16 @@ class BaseRecommender {
       Localities l ON l.id = j.locality_id
         LEFT JOIN
       Categories c ON j.category_id = c.id
+      LEFT JOIN Companies com  ON j.recruiter_id=com.id
       `;
 
     let baseQueryFilter = ` j.id NOT IN (:actioned_jobs)
         AND ${this.getGenderQuery().filter}
         AND ${this.getEducationQuery().filter}
         AND expiry_date >= '${today}'
+
         AND status ='ACTIVE'
+        AND com.is_varified =true
                                 `;
 
     return { baseQueryProjection, baseQuerySource, baseQueryFilter };
@@ -242,7 +245,6 @@ class BaseRecommender {
       whereClause = [...whereClause, ...this.filterString];
     }
     let whereString = whereClause.join(` AND `);
-
     const job_query = `SELECT
                     ${baseQueryProjection},
                     ${distanceScore} AS distanceScore,
@@ -256,10 +258,12 @@ class BaseRecommender {
                     ${whereString} 
                     ORDER BY score DESC,  j.id DESC
              `;
+             console.log("query", job_query);
     const job_count_query = `SELECT Sum(no_of_openings)  AS job_count
                                 ${baseQuerySource}
                                 ${whereString} 
                                 `;
+                               
     await this.getJobsData(job_query, job_count_query);
     return {
       job_ids: this.job_ids,

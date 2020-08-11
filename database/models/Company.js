@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING },
     address : { type: DataTypes.STRING },
     registration_number: { type: DataTypes.STRING },
+    is_varified: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    }
   });
   return Company;
 };

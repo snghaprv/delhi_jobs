@@ -89,6 +89,10 @@
                     "field": "address",
                     "seqType": "Sequelize.STRING"
                 },
+                "registration_number": {
+                    "field": "registration_number",
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -208,6 +212,11 @@
                 "expiry_date": {
                     "field": "expiry_date",
                     "seqType": "Sequelize.DATEONLY"
+                },
+                "term_and_condition": {
+                    "allowNull": false,
+                    "field": "term_and_condition",
+                    "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -699,5 +708,5 @@
             "indexes": []
         }
     },
-    "revision": 18
+    "revision": 20
 }
