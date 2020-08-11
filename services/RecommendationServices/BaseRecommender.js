@@ -158,7 +158,7 @@ class BaseRecommender {
         AND expiry_date >= '${today}'
 
         AND status ='ACTIVE'
-        AND com.is_varified =true
+        AND com.varified =true
                                 `;
 
     return { baseQueryProjection, baseQuerySource, baseQueryFilter };

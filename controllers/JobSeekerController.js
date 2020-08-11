@@ -49,7 +49,7 @@ const getAllJobs = async function (req, res) {
     const {job_ids,job_count} = await recommender.getRecommendedJobs();
   
     const { limit, offset } = getPagination(page, size);
-    console.log(limit,offset);
+    // console.log(limit,offset);
     // return
     const job_data = await JobServices.getJobsDataForJobSeeker(job_ids,limit, offset);
     return res.sendSuccessResponse({ jobs: job_data,filters,job_count });
