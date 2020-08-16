@@ -93,12 +93,12 @@
                     "field": "registration_number",
                     "seqType": "Sequelize.STRING"
                 },
-                "varified": {
+                "is_verified": {
                     "allowNull": false,
                     "defaultValue": {
                         "value": false
                     },
-                    "field": "varified",
+                    "field": "is_verified",
                     "seqType": "Sequelize.BOOLEAN"
                 },
                 "createdAt": {
@@ -716,5 +716,5 @@
             "indexes": []
         }
     },
-    "revision": 22
+    "revision": 23
 }

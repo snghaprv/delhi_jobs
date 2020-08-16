@@ -6,8 +6,9 @@ const createJob = async function (req, res) {
   try {
       const job_data = req.body;
       const recruiter_id = req.token.id;
-      const job_id = await JobServices.createJob(job_data,recruiter_id);
-        return res.sendSuccessResponse({job:{job_id}});
+      const {id,is_company_verified} = await JobServices.createJob(job_data,recruiter_id);
+     console.log("++++++++++++++++++++++++++++++",id,is_company_verified);
+        return res.sendSuccessResponse({job:{id,is_company_verified:is_company_verified}});
   } catch (error) {
       console.error(error)
     return res.sendErrorResponse();

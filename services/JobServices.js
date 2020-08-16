@@ -31,8 +31,10 @@ const createJob = async function (job_data, recruiter_id) {
     job_data = { ...job_data, skills };
   }
 
-  const job = await Job.create(job_data);
-  return job.id;
+  const {id} = await Job.create(job_data);
+  const is_company_verified= await getCompanyVerificationDetail(recruiter_id);
+  console.log(is_company_verified);
+  return {id,is_company_verified};
 };
 
 const getOneJobDataForJobSeeker = async function (job_id,jobseeker_id) {
@@ -312,6 +314,17 @@ const getEmployeeVacanciesJobseekersCount= async()=>{
    FROM   JobSeekers`;
   const [result] = await sequelize.query(query);
   return result;
+}
+
+const getCompanyVerificationDetail= async(recruiter_id)=>{
+  const query = `select c.is_verified from Recruiters as r
+
+  Inner Join Companies as c
+  On r.company_id=c.id 
+  where r.id=${recruiter_id}`;
+  const [result] = await sequelize.query(query);
+
+  return result[0].is_verified;
 }
 
 

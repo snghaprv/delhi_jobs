@@ -21,14 +21,14 @@ const sendSMSOnProduction = async function (content, phone) {
     GOVT_SMS_SIGNATURE: signature,
   } = process.env;
   let url = `https://smsgw.sms.gov.in/failsafe/HttpLink?username=${username}&pin=${pin}&message=${content}&mnumber=${phone}&signature=${signature}`;
-  // const axios_instance = axios.create({
-  //   httpsAgent: new https.Agent({
-  //     rejectUnauthorized: false,
-  //   }),
-  // });
+  const axios_instance = axios.create({
+    httpsAgent: new https.Agent({
+      rejectUnauthorized: false,
+    }),
+  });
 
-  // let response = await axios_instance.get(url);
-  let response=  await doRequest(url);
+  let response = await axios_instance.get(url);
+  // let response=  await doRequest(url);
 
   if (response.status != 200) {
     console.error(response);
@@ -44,8 +44,8 @@ const sendSMSOnTesting = async function (content, phone, message_type) {
     PROMOTIONAL: process.env.KALEYRA_PROMOTIONAL_API_KEY,
   };
   let url = `https://api-global.kaleyra.com/v4/?method=sms&api_key=${KALEYRA_KEYS[message_type]}&to=91${phone}&message=${content}&format=1122334455667788991010___XXXXXXXXXX&sender=${process.env.KALEYRA_SENDER_ID}`;
-  // let response = await axios.get(url);
-  let response= await doRequest(url);
+  let response = await axios.get(url);
+  // let response= await doRequest(url);
   console.log(response);
   if (response.status != "OK") {
     console.error(response);
@@ -55,7 +55,7 @@ const sendSMSOnTesting = async function (content, phone, message_type) {
 };
 const sendMessage = async function (content, phone, message_type) {
   let response =
-    process.env.NODE_ENV == "development"
+    process.env.NODE_ENV == "production"
       ? await sendSMSOnProduction(content, phone, message_type)
       : await sendSMSOnTesting(content, phone, message_type);
   return response;
