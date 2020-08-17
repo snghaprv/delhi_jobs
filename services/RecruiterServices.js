@@ -22,7 +22,7 @@ const getProfile = async function (recruiter_id) {
     attributes: ["name", "whatsapp_number", "email", "phone","is_call_allowed"],
     include: {
       model: Company,
-      attributes: ["name", "address","registration_number"],
+      attributes: ["name", "address","registration_number","is_verified"],
       as : "company"
     },
   });
