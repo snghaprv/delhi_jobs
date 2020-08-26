@@ -23,7 +23,7 @@ async function getAndSendOTP(keyObject, phone){
         throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
     }
     if(!otp){
-        otp = generator.GenerateOTP();
+        otp = 1234;//generator.GenerateOTP();
         console.log(otp);
         await redis.set(key, otp, "EX", ttl);
         await redis.set(attempts_key,1,'EX',ttl);
