@@ -12,8 +12,8 @@ const MAX_OTP_ENTERING_ATTEMPTS_ALLOWED = 4;
 async function getAndSendOTP(keyObject, phone){
     let {key, ttl, attempts_key, entered_key,user_type} = keyObject; 
     let resend = false;
-    let otp = await redis.get(key);
-    console.log(otp);
+    let otp; //await redis.get(key);
+    // console.log(otp);
     let attempts_count = await redis.get(attempts_key);
     if(attempts_count>=MAX_OTP_GENERATE_ATTEMPTS_ALLOWED){
         throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
@@ -23,7 +23,7 @@ async function getAndSendOTP(keyObject, phone){
         throw('MAX_OTP_ATTEMPTS_EXHAUSTED')
     }
     if(!otp){
-        otp = 1234;//generator.GenerateOTP();
+        otp = 123456;//generator.GenerateOTP();
         console.log(otp);
         await redis.set(key, otp, "EX", ttl);
         await redis.set(attempts_key,1,'EX',ttl);
@@ -40,8 +40,8 @@ async function getAndSendOTP(keyObject, phone){
     }
     return {otp,resend};
 
-    await SMS.sendMessage(content, phone, 'TRANSACTIONAL');
-    return {otp,resend};
+    // await SMS.sendMessage(content, phone, 'TRANSACTIONAL');
+    // return {otp,resend};
 }
 
 async function verifyOTP(keyObject, otp){
