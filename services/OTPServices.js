@@ -38,6 +38,7 @@ async function getAndSendOTP(keyObject, phone){
     } else if(user_type== 'JOBSEEKER'){
         content = encodeURIComponent (`Dear Job Seeker \n\nOTP for registration to RojgarBazaar website is ${otp}`)
     }
+    return {otp,resend};
 
     await SMS.sendMessage(content, phone, 'TRANSACTIONAL');
     return {otp,resend};
