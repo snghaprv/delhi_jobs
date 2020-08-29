@@ -149,14 +149,14 @@ class BaseRecommender {
       Localities l ON l.id = j.locality_id
         LEFT JOIN
       Categories c ON j.category_id = c.id
-      LEFT JOIN Companies com  ON j.recruiter_id=com.id
+      LEFT JOIN Recruiters rec ON j.recruiter_id=rec.id
+      LEFT JOIN Companies com  ON rec.company_id=com.id
       `;
 
     let baseQueryFilter = ` j.id NOT IN (:actioned_jobs)
         AND ${this.getGenderQuery().filter}
         AND ${this.getEducationQuery().filter}
         AND expiry_date >= '${today}'
-
         AND status ='ACTIVE'
         AND com.is_verified =true
                                 `;
@@ -217,14 +217,20 @@ class BaseRecommender {
     return { rankString };
   }
   async getRecommendedJobs() {
-    let jobs = await Job.findAll({
-      attributes: ["id"],
-    });
+
+    const job_query=`SELECT Job.id, 
+    companies.is_verified 
+FROM   jobs AS Job 
+    LEFT OUTER JOIN recruiters AS recruiter 
+                 ON Job.recruiter_id = recruiter.id 
+    LEFT OUTER JOIN companies
+                 ON recruiter.company_id = companies.id 
+WHERE  companies.is_verified = true`
+let jobs= sequelize.query(job_query),
     jobs = jobs.map((job) => job.toJSON());
     jobs = jobs.map(({ id }) => id);
     return jobs;
   }
-
   async getRecommendedJobs() {
     const CATEGORY_MAX_SCORE = 50;
     const FRESHNESS_MAX_SCORE = 30;
@@ -272,6 +278,7 @@ class BaseRecommender {
   }
 
   async getJobsData(job_query, job_count_query) {
+  
     let [job_ids, [count]] = await Promise.all([
       sequelize.query(job_query, {
         replacements: this.replacements,
